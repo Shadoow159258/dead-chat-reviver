@@ -1,5 +1,5 @@
 # Dead Chat Reviver
-Discord Bot: Dead chat Reviver  
+Discord Bot: Dead Chat Reviver  
 Helps preventing servers / channels from dying  
 
 ## Information
@@ -7,14 +7,14 @@ To use this bot, you need to consider several aspects. They are listed below.
 Extra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work!  
 
 ## Commands
-**/setup**  
+__**/setup**__  
 Sets up a revive message for a channel. Use the same command to change your settings.  
 channel - The channel on which these rules should apply  
 time - Amount of time the channel should be inactive for the bot to activate  
 role - The role you want to ping when the chat dies  
-**/help**  
+__**/help**__  
 Outputs the message you're looking at right now.  
-**/topic**  
+__**/topic**__  
 Sends a random conversation starter to help reviving the chat.  
 
 ## Invite
