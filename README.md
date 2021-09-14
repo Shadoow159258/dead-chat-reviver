@@ -1,5 +1,5 @@
 # Dead Chat Reviver
-Discord Bot: Dead chat Reviver  
+Discord Bot: Dead Chat Reviver  
 Helps preventing servers / channels from dying  
 
 ## Information
