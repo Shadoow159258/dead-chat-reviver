@@ -1,0 +1,49 @@
+// ++ REQUIRE ++
+const Sequelize = require('sequelize');
+const Discord = require("discord.js");
+const fs = require("fs");
+const config = require("./config.json");
+
+
+// ++ CLIENT ++
+const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+client.commands = new Discord.Collection();
+
+// ++ SEQUELIZE ++
+const sequelize = new Sequelize('database', 'user', 'password', {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	storage: 'database.sqlite',
+});
+client.guildSettings = sequelize.define('guildSettings', {
+	guildId: Sequelize.STRING,
+	pingRole: Sequelize.STRING,
+	timesADay: Sequelize.INTEGER,
+	timeToWait: Sequelize.INTEGER,
+});
+
+exports.client = client;
+
+
+// ++ EVENTS ++
+const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
+for (const file of eventFiles) {
+	const event = require(`./src/events/${file}`);
+	if (event.name === 'ready') {
+		client.once(event.name, (...args) => event.execute(...args, client));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args, client));
+	}
+}
+
+
+// ++ SLASH COMMANDS ++
+const commandFiles = fs.readdirSync(`./src/commands`).filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(`./src/commands/${file}`);
+	client.commands.set(command.name, command);
+}
+
+// ++ LOGIN ++
+client.login(config.client.token)

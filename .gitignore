@@ -1,0 +1,6 @@
+# Standard
+node_modules
+database.sqlite
+
+# Public
+config.json
