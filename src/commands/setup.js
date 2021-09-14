@@ -115,7 +115,12 @@ module.exports = {
 
 
 		// ++ ROLE ++
-		const roleId = "";
+		let roleId;
+		if(opt.role) {
+			roleId = opt.role.id;
+		} else {
+			roleId = "";
+		}
 
 
 		// ++ DATABASE ++

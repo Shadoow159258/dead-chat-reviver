@@ -87,6 +87,10 @@ module.exports = {
 								"color": guild.me.displayColor,
 							}]
 						}
+						if(entry.role.length > 0) {
+							const role = guild.roles.cache.get(entry.role);
+							msgObj.content = `<@&${role.id}>`;
+						}
 						return channel.send(msgObj);
 					}
 				});
