@@ -4,7 +4,6 @@ module.exports = {
 		if (!int.member) return;
 		const { user, member, guild, message } = int;
 		const { authors } = client;
-		const settings = (await client.guildSettings.findOne({ where: { guildId: guild.id } })).dataValues;
 
 		if (int.isCommand()) {
 			if (!client.commands.has(int.commandName)) return;

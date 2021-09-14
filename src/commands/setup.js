@@ -69,7 +69,7 @@ const error = (int, type, custom) => {
 	let reason;
 	switch (type) {
 		case "channel":
-			reason = "<:error:887414219845292052> Please enter a valid, existing channel!";
+			reason = "<:error:887414219845292052> Please enter a valid, existing text channel!";
 			break;
 		case "time":
 			reason = custom;
@@ -115,11 +115,21 @@ module.exports = {
 
 
 		// ++ ROLE ++
-
+		const roleId = "";
 
 
 		// ++ DATABASE ++
-		await client.guildSettings.update({ timeToWait: time }, { where: { guildId: int.guild.id } });
+		const entry = await client.revive.findOne({ where: { channelId: opt.channel.id } });
+		if(entry) {
+			await client.revive.destroy({ where: { channelId: opt.channel.id } });
+		}
+		await client.revive.create({
+			guildId: int.guild.id.toString(),
+			channelId: opt.channel.id.toString(),
+			role: roleId,
+			time: time,
+		});
+
 
 		return int.reply({ content: `${ms[1]}` });
 	},

@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config.json");
-
+const revive = require("./src/revive.js")
 
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -16,11 +16,11 @@ const sequelize = new Sequelize('database', 'user', 'password', {
 	logging: false,
 	storage: 'database.sqlite',
 });
-client.guildSettings = sequelize.define('guildSettings', {
+client.revive = sequelize.define('revive', {
 	guildId: Sequelize.STRING,
-	pingRole: Sequelize.STRING,
-	timesADay: Sequelize.INTEGER,
-	timeToWait: Sequelize.INTEGER,
+	channelId: Sequelize.STRING,
+	role: Sequelize.STRING,
+	time: Sequelize.INTEGER,
 });
 
 exports.client = client;
@@ -44,6 +44,13 @@ for (const file of commandFiles) {
 	const command = require(`./src/commands/${file}`);
 	client.commands.set(command.name, command);
 }
+
+
+// ++ REVIVE CHAT MESSAGES ++
+setInterval(() => {
+	revive.execute(client);
+}, 120000);
+
 
 // ++ LOGIN ++
 client.login(config.client.token)

@@ -75,8 +75,8 @@ module.exports = {
 		console.log('\x1b[44m%s\x1b[0m', '==================OTHERS===================');
 
 		// Databases
-		await client.guildSettings.sync();
-		console.log("guildSettings Synced");
+		await client.revive.sync();
+		console.log("revive Synced");
 
 		// Deploy slash commands
 		const commands = [];

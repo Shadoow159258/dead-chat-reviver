@@ -4,19 +4,20 @@ module.exports = {
 	name: 'help',
 	description: 'Display some help and information about the bot',
 	async execute(int, client) {
-		const setup = ["`channel` - _Channel_ - The channel on which these rules should apply",
-			"`time` - _Time to wait_ - Amount of time the channel should be inactive for the bot to activate",
-			"`role` - _Pinged Role_ - The role you want to ping when the chat dies",
-			"`-/-` - _Maximum pings per day_ - __3__; __this is fixed and can't be changed__ at the moment"];
+		const setup = 	[
+							"`channel` - The channel on which these rules should apply",
+							"`time` - Amount of time the channel should be inactive for the bot to activate",
+							"`role` - The role you want to ping when the chat dies"
+						];
 
 		const HelpEmbed = {
 			"title": "Help - Overview",
-			"description": `To use this bot, you need to consider several aspects. They are listed below.`,
+			"description": `To use this bot, you need to consider several aspects. They are listed below. \n\nExtra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work!`,
 			"color": int.guild.me.displayColor,
 			"fields": [
 				{
 					"name": "**/setup**",
-					"value": `${setup.join("\n")}`,
+					"value": `Sets up a revive message for a channel. Use the same command to change your settings. \n${setup.join("\n")}`,
 				},
 				{
 					"name": "**/help**",
