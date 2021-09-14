@@ -87,7 +87,7 @@ module.exports = {
 		}
 		const rest = new REST({ version: '9' }).setToken(config.client.token);
 		try {
-			await rest.put( Routes.applicationGuildCommands(client.user.id, "866435905782808606"), { body: commands } );
+			await rest.put(Routes.applicationCommands(client.user.id), { body: commands });
 			console.log("Deployed Slash Commands");
 		} catch (error) {
 			console.error(error);
