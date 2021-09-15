@@ -16,6 +16,8 @@ _**/help**_
 Outputs the message you're looking at right now.  
 _**/topic**_  
 Sends a random conversation starter to help reviving the chat.  
+_**/list**_
+Displays a list of all revive message channels and their settings on the server.
 
 ## Invite
 [Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=2147994624 "discord.com")  

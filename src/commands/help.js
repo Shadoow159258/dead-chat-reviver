@@ -28,6 +28,10 @@ module.exports = {
 					"value": "Sends a random conversation starter to help reviving the chat.",
 				},
 				{
+					"name": "**/list**",
+					"value": "Displays a list of all revive message channels and their settings on the server.",
+				},
+				{
 					"name": "**__Bot Info__**",
 					"value": `[Invite Link](${config.client.invite} "Discord Bot Invite Link") | [Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
 				}
