@@ -85,6 +85,7 @@ module.exports = {
 			const command = require(`../slashData/${file}`);
 			commands.push(command.toJSON());
 		}
+
 		const rest = new REST({ version: '9' }).setToken(config.client.token);
 		try {
 			await rest.put(Routes.applicationCommands(client.user.id), { body: commands });
