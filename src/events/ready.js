@@ -2,9 +2,6 @@ const fs = require('fs');
 const path = require('path');
 var dateFormat = require('dateformat');
 var now = new Date();
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const config = require("../../config.json");
 
 module.exports = {
 	name: 'ready',
@@ -76,23 +73,7 @@ module.exports = {
 
 		// Databases
 		await client.revive.sync();
-		console.log("revive Synced");
-
-		// Deploy slash commands
-		const commands = [];
-		const commandFiles = fs.readdirSync('./src/slashData').filter(file => file.endsWith('.js'));
-		for (const file of commandFiles) {
-			const command = require(`../slashData/${file}`);
-			commands.push(command.toJSON());
-		}
-
-		const rest = new REST({ version: '9' }).setToken(config.client.token);
-		try {
-			await rest.put(Routes.applicationCommands(client.user.id), { body: commands });
-			console.log("Deployed Slash Commands");
-		} catch (error) {
-			console.error(error);
-		}
+		console.log("Database Synced");
 
 		console.log('-------------------DONE--------------------');
 	},
