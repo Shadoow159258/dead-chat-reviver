@@ -33,7 +33,7 @@ module.exports = {
 				},
 				{
 					"name": "**__Bot Info__**",
-					"value": `[Invite Link](${config.client.invite} "Discord Bot Invite Link") | [Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
+					"value": `[Invite Link](${config.client.invite} "discord.com") | [Top.gg](https://top.gg/bot/${client.user.id} "top.gg") | [Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
 				}
 			]
 		};
