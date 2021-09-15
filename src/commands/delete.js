@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'list',
-	description: 'Display all active revive message channel',
+	name: 'delete',
+	description: 'Remove a revive message channel',
 	async execute(int, client) {
 		// check channel type
 		const channel = int.options.getChannel('channel');

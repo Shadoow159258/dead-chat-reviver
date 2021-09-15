@@ -16,20 +16,24 @@ module.exports = {
 			"color": int.guild.me.displayColor,
 			"fields": [
 				{
-					"name": "**/setup**",
-					"value": `Sets up a revive message for a channel. Use the same command to change your settings. \n${setup.join("\n")}`,
-				},
-				{
 					"name": "**/help**",
 					"value": "Outputs the message you're looking at right now.",
 				},
 				{
-					"name": "**/topic**",
-					"value": "Sends a random conversation starter to help reviving the chat.",
+					"name": "**/setup**",
+					"value": `Sets up a revive message for a channel. Use the same command to change your settings. \n${setup.join("\n")}`,
+				},
+				{
+					"name": "**/delete**",
+					"value": "Remove a revive message channel.",
 				},
 				{
 					"name": "**/list**",
 					"value": "Displays a list of all revive message channels and their settings on the server.",
+				},
+				{
+					"name": "**/topic**",
+					"value": "Sends a random conversation starter to help reviving the chat.",
 				},
 				{
 					"name": "**__Bot Info__**",
