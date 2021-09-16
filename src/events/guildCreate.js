@@ -19,9 +19,11 @@ module.exports = {
 	async execute(guild, client) {
 		// join embed
 		const Embed = {
-			"title": `Joined my ${ord(client.guilds.cache.size)} server!`,
 			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \n**Members:** ${guild.memberCount}`,
 			"color": 3066993,
+			"footer": {
+				"text": `Added to a server (${ord(client.guilds.cache.size)})`
+			},
 			"timestamp": new Date(),
 		}
 		if(client.guilds.cache.size % 10 === 0) Embed.title += ' :tada:';

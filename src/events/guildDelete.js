@@ -15,9 +15,11 @@ module.exports = {
 		const joinedAt = `\`${utcTime} UTC\` (${moment.utc(guild.me.joinedAt).fromNow()})`;
 
 		const Embed = {
-			"title": `Removed from a server! <:sad:871028590781820929>`,
 			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \n**Members:** ${guild.memberCount} \n**Joined At:** ${joinedAt}`,
 			"color": 15158332,
+			"footer": {
+				"text": "Removed from a server"
+			},
 			"timestamp": new Date(),
 		}
 		
