@@ -3,7 +3,7 @@ Discord Bot: Dead Chat Reviver
 Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter.  
 [Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=2147994624 "discord.com")  
 
-## Commands  
+## (/) Commands  
 _**/help**_  
 Outputs the message you're looking at right now.  
 _**/setup**_  
