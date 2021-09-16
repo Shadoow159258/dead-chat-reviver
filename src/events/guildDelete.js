@@ -16,7 +16,7 @@ module.exports = {
 
 		const Embed = {
 			"title": `Removed from a server! <:sad:871028590781820929>`,
-			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \nMembers: ${guild.memberCount} \nJoined At: ${joinedAt}`,
+			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \n**Members:** ${guild.memberCount} \n**Joined At:** ${joinedAt}`,
 			"color": 15158332,
 			"timestamp": new Date(),
 		}

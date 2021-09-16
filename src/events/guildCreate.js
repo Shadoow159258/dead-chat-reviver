@@ -20,7 +20,7 @@ module.exports = {
 		// join embed
 		const Embed = {
 			"title": `Joined my ${ord(client.guilds.cache.size)} server!`,
-			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \nMembers: ${guild.memberCount}`,
+			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \n**Members:** ${guild.memberCount}`,
 			"color": 3066993,
 			"timestamp": new Date(),
 		}
