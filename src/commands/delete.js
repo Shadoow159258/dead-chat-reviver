@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'delete',
 	description: 'Remove a revive message channel',
+	permissions: "manager",
 	async execute(int, client) {
 		// check channel type
 		const channel = int.options.getChannel('channel');

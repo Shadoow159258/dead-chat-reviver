@@ -19,6 +19,7 @@ const msToTime = (ms) => {
 module.exports = {
 	name: 'list',
 	description: 'Display all active revive message channel',
+	permissions: "manager",
 	async execute(int, client) {
 		const revives = await client.revive.findAll();
 		const printSettings = [];
