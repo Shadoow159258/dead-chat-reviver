@@ -12,7 +12,7 @@ module.exports = {
 
 		const HelpEmbed = {
 			"title": "Help - Overview",
-			"description": `To use this bot, you need to consider several aspects. They are listed below. \n\nExtra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work!`,
+			"description": `To use this bot, you need to consider several aspects. They are listed below. \nExtra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work! \n\nIf you want to speak to someone because you think you've found a bug or have a question about the bot, you can [join the support server](${config.support.invite}).`,
 			"color": int.guild.me.displayColor,
 			"fields": [
 				{
@@ -37,7 +37,7 @@ module.exports = {
 				},
 				{
 					"name": "**__Bot Info__**",
-					"value": `[Invite Link](${config.client.invite} "discord.com") | [Top.gg](https://top.gg/bot/${client.user.id} "top.gg") | [Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
+					"value": `[Invite Link](${config.client.invite} "discord.com") | [Support](${config.support.invite} "discord.com") | [Top.gg](https://top.gg/bot/${client.user.id} "top.gg") | [Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
 				}
 			]
 		};
