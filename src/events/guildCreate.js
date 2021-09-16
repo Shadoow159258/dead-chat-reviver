@@ -26,7 +26,6 @@ module.exports = {
 			},
 			"timestamp": new Date(),
 		}
-		if(client.guilds.cache.size % 10 === 0) Embed.title += ' :tada:';
 		
 		client.channels.cache.get(config.channel.joins).send({ embeds: [Embed] });
 	}
