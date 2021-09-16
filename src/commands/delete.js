@@ -8,7 +8,7 @@ module.exports = {
 		if (!int.guild.channels.cache.has(channel.id)) return int.reply("<:error:887414219845292052> Please enter a valid, existing text channel!");
 
 		// delete
-		const entry = await Tags.destroy({ where: { channelId: channel.id } });
+		const entry = await client.revive.destroy({ where: { channelId: channel.id } });
 		if (!entry) {
 			return int.reply("<:error:887414219845292052> That revive message channel did not exist!");
 		} else {
