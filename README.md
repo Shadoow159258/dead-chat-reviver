@@ -1,7 +1,7 @@
 # Dead Chat Reviver  
 Discord Bot: Dead Chat Reviver  
 Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter.  
-[Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=215040 "discord.com")  
+[Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=478208 "discord.com")  
 
 ## (/) Commands  
 _**/help**_  
@@ -30,7 +30,7 @@ Personally, I don't like the idea that bots only have slash commands, but it see
 If you chose a really small amount of time, it can still take up to 3 minutes to work!  
 
 ## Links  
-[Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=215040 "discord.com")  
+[Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=478208 "discord.com")  
 [Top.gg](https://top.gg/bot/887293151998529576 "top.gg")  
 [Developer's Website](https://poldisweb.de "poldisweb.de")  
 
