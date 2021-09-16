@@ -1,6 +1,6 @@
 # Dead Chat Reviver  
 Discord Bot: Dead Chat Reviver  
-Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter.
+Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter.  
 [Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=2147994624 "discord.com")  
 
 ## Commands  
@@ -8,11 +8,12 @@ _**/help**_
 Outputs the message you're looking at right now.  
 _**/setup**_  
 Sets up a revive message for a channel. Use the same command to change your settings.  
-channel - The channel on which these rules should apply  
-time - Amount of time the channel should be inactive for the bot to activate  
-role - The role you want to ping when the chat dies  
+`channel` - The channel on which these rules should apply  
+`time` - Amount of time the channel should be inactive for the bot to activate  
+`role` - The role you want to ping when the chat dies  
 _**/delete**_  
 Remove a revive message channel.  
+`channel` - The channel whose revive message is to be removed
 _**/list**_  
 Displays a list of all revive message channels and their settings on the server.  
 _**/topic**_  
@@ -33,4 +34,4 @@ If you chose a really small amount of time, it can still take up to 3 minutes to
 [Top.gg](https://top.gg/bot/887293151998529576 "top.gg")  
 [Developer's Website](https://poldisweb.de "poldisweb.de")  
 
-Creator's Discord Tag: Poldi#0001
+Creator's Discord Tag: `Poldi#0001`
