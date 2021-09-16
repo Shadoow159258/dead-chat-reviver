@@ -75,6 +75,8 @@ module.exports = {
 		await client.revive.sync();
 		console.log("Database Synced");
 
+		// await require("../register").execute(client);
+
 		console.log('-------------------DONE--------------------');
 	},
 };
