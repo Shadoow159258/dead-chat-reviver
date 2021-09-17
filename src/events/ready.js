@@ -17,7 +17,7 @@ module.exports = {
 		client.user.setPresence({
 			status: 'online', //online, idle & dnd
 			activities: [{
-				name: '/help',
+				name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`,
 				type: 'PLAYING' // PLAYING, LISTENING, STREAMING & WATCHING
 			}]
 		});

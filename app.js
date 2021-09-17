@@ -46,10 +46,22 @@ for (const file of commandFiles) {
 }
 
 
+// ++ UPDATE PRESENCE ++
+setInterval(() => {
+	client.user.setPresence({
+		status: 'online', //online, idle & dnd
+		activities: [{
+			name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`,
+			type: 'PLAYING' // PLAYING, LISTENING, STREAMING & WATCHING
+		}]
+	});
+}, 3600000) // 1 hour
+
+
 // ++ REVIVE CHAT MESSAGES ++
 setInterval(() => {
 	revive.execute(client);
-}, 120000);
+}, 120000); // 2 minutes
 
 
 // ++ LOGIN ++
