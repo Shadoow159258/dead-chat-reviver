@@ -70,7 +70,27 @@ module.exports = {
 			"If You Found $2,000 On The Ground, What Would You Do With It?",
 			"What’s Your Favorite Pizza Topping?",
 			"What Would You Do If You Could Possess The Abilities Of Your Dog?",
-			"What’s The Smartest Thing You’ve Ever Done?"
+			"What’s The Smartest Thing You’ve Ever Done?",
+			"What do you most like about yourself?",
+			"What hurts your feelings?",
+			"If you could be famous, would you want to? Why?",
+			"Who is a celebrity you admire?",
+			"What made you laugh at school today?",
+			"Did anything make you upset today?",
+			"If you could have more friends, would you?",
+			"What do you like most about your friends?",
+			"Is there anyone at school you’d like to know better?",
+			"Have you ever lost a friend? Why?",
+			"Where do you want to be ten years from now?",
+			"If you had $100, what would you spend it on?",
+			"Is there something you’d want to do as a family?",
+			"If you were to choose one way to be disciplined, what would it be?",
+			"What do you think are the best traits for a person to have?",
+			"Would you ever get a tattoo? What would it be?",
+			"What do you think is a good age to start dating?",
+			"Why do you think popular kids are popular?",
+			"If you could go anywhere in the world, where would you choose and why?",
+			"What is something you wish you could do everyday?",
 		];
 
 		const Embed = {
