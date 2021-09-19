@@ -88,7 +88,7 @@ module.exports = {
 				case "changelog":
 					Embed = {
 						"title": "Changelog",
-						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com")`,
+						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
 						"color": int.guild.me.displayColor,
 					};
 					int.reply({ embeds: [Embed] });
