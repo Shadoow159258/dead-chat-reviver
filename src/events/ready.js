@@ -78,5 +78,14 @@ module.exports = {
 		// await require("../register").execute(client);
 
 		console.log('-------------------DONE--------------------');
+
+
+		// Update bot pressence (user count)
+		setInterval(() => {
+			client.user.setPresence({
+				status: 'online', //online, idle & dnd
+				activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }]
+			});
+		}, 3600000) // 1 hour
 	},
 };
