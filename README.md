@@ -33,6 +33,9 @@ Personally, I don't like the idea that bots only have slash commands, but it see
 ### Extra  
 If you chose a really small amount of time, it can still take up to 3 minutes to work!  
 
+### Credits  
+The `timeToMs` as well as `msToTime` functions were originally built by [saucylegs](https://github.com/saucylegs "github.com").
+
 ## Links  
 [Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=478208 "discord.com")  
 [Support Server](https://discord.gg/6UXNC9b6Ue "discord.com")  
