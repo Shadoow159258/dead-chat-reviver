@@ -130,6 +130,9 @@ module.exports = {
 						}
 						return channel.send(msgObj);
 					}
+				}).catch((err) => {
+					await client.revive.destroy({ where: { channelId: channel.id } });
+					channel.send(`This channel is set up for revive messages, but I don't have the necessary permissions to do it! \nI deleted the settings for this channel, please set up the permissions and then try again! \nOwner Ping: <@${guild.ownerId}>`)
 				});
 		}
 	}
