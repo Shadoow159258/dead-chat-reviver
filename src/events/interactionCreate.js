@@ -79,7 +79,7 @@ module.exports = {
 				case "info":
 					Embed = {
 						"title": "Live Information",
-						"description": `**Tag:** ${client.user.tag} \n**ID:** ${client.user.id} \n**In guilds:** ${client.guilds.cache.size} \n**Users:** ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} \n**Status:** ${client.user.presence.status} \n**Activity:** ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`,
+						"description": `**Tag:** ${client.user.tag} \n**ID:** \`${client.user.id}\` \n**In guilds:** ${client.guilds.cache.size} \n**Users:** ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} \n**Status:** ${client.user.presence.status} \n**Activity:** ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`,
 						"color": int.guild.me.displayColor,
 						"timestamp": new Date(),
 					};
