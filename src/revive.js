@@ -88,17 +88,17 @@ module.exports = {
 			"If you could go anywhere in the world, where would you choose and why?",
 			"What is something you wish you could do everyday?",
 		];
-		
+
 		for (const entry of revives) {
 			const channel = client.channels.cache.get(entry.channelId);
 			const guild = client.guilds.cache.get(entry.guildId);
-			
+
 			channel.messages.fetch({ limit: 1 })
 				.then((msgs) => {
 					msgs = [...msgs.values()];
 					const msg = msgs[0];
-					if(msgs.length > 0) {
-						if(msg.author.id === client.user.id) return;
+					if (msgs.length > 0) {
+						if (msg.author.id === client.user.id) return;
 						const diff = Math.floor(Date.now() - msg.createdAt);
 						if (diff > entry.time) {
 							const msgObj = {
@@ -109,7 +109,7 @@ module.exports = {
 									"color": guild.me.displayColor,
 								}]
 							}
-							if(entry.role.length > 0) {
+							if (entry.role.length > 0) {
 								const role = guild.roles.cache.get(entry.role);
 								msgObj.content = `<@&${role.id}>`;
 							}
@@ -124,15 +124,17 @@ module.exports = {
 								"color": guild.me.displayColor,
 							}]
 						}
-						if(entry.role.length > 0) {
+						if (entry.role.length > 0) {
 							const role = guild.roles.cache.get(entry.role);
 							msgObj.content = `<@&${role.id}>`;
 						}
 						return channel.send(msgObj);
 					}
 				}).catch((err) => {
-					await client.revive.destroy({ where: { channelId: channel.id } });
-					channel.send(`This channel is set up for revive messages, but I don't have the necessary permissions to do it! \nI deleted the settings for this channel, please set up the permissions and then try again! \nOwner Ping: <@${guild.ownerId}>`)
+					// ignore missing permissions
+					if(err.code !== 50013) { 
+						console.error(err);
+					}
 				});
 		}
 	}

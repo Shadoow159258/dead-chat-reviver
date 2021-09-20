@@ -60,7 +60,7 @@ const timeToMs = (str) => {
 		if (totalMs < 60000 || totalMs > 604800000) {
 			return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 minute and a maximum of 7 days."];
 		} else {
-			const successstr = "<:success:887414468324253737> Success! I will send a message if the selected channel has no activity for " + msToTime(totalMs) + ".";
+			const successstr = `<:success:887414468324253737> Success! I will send a message if CHANNEL_MENTION_HERE has no activity for ${msToTime(totalMs)}`;
 			return [true, successstr, totalMs];
 		}
 	}
@@ -95,7 +95,7 @@ module.exports = {
 			channel: int.options.getChannel('channel'),
 			time: int.options.getString('time'),
 		}
-		if(int.options.getRole('role')) opt.role = int.options.getRole('role');
+		if (int.options.getRole('role')) opt.role = int.options.getRole('role');
 
 
 		// ++ CHANNEL ++
@@ -116,18 +116,22 @@ module.exports = {
 
 		// ++ ROLE ++
 		let roleId;
-		if(opt.role) {
+		if (opt.role) {
 			roleId = opt.role.id;
 		} else {
 			roleId = "";
 		}
 
 
-		// ++ DATABASE ++
-		const entry = await client.revive.findOne({ where: { channelId: opt.channel.id } });
-		if(entry) {
-			await client.revive.destroy({ where: { channelId: opt.channel.id } });
+		// ++ CHECK PERMISSIONS ++
+		const chPe = opt.channel.permissionsFor(int.guild.me);
+		if(!chPe.has("SEND_MESSAGES") || !chPe.has("READ_MESSAGE_HISTORY") || !chPe.has("EMBED_LINKS")) {
+			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again!`);
 		}
+
+
+		// ++ DATABASE ++
+		await client.revive.destroy({ where: { channelId: opt.channel.id } });
 		await client.revive.create({
 			guildId: int.guild.id.toString(),
 			channelId: opt.channel.id.toString(),
@@ -135,7 +139,7 @@ module.exports = {
 			time: time,
 		});
 
-
+		ms[1] = ms[1].replace("CHANNEL_MENTION_HERE", `<#${opt.channel.id}>`);
 		return int.reply({ content: `${ms[1]}` });
 	},
 };
