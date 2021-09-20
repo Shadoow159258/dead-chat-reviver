@@ -22,7 +22,7 @@ module.exports = {
 			},
 			"timestamp": new Date(),
 		}
-		
+
 		client.channels.cache.get(config.channel.joins).send({ embeds: [Embed] });
 	}
 }
