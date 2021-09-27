@@ -1,0 +1,24 @@
+{
+	"client": {
+		"name": "",
+		"id": "",
+		"token": "",
+		"invite": ""
+	},
+	"version": {
+		"v": "0.0",
+		"release": ""
+	},
+	"creator": {
+		"name": "Poldi",
+		"tag": "Poldi#0001",
+		"id": "645580301057392650",
+		"web": "https://poldisweb.de"
+	},
+	"support": {
+		"invite": ""
+	},
+	"channel": {
+		"joins": ""
+	}
+}
