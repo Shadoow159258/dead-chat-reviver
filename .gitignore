@@ -1,6 +1,8 @@
-# Standard
+# Always exclute
 node_modules
 database.sqlite
 
-# Public
+# Only exclude for public version (private)
 config.json
+README.html
+future-plans.txt
