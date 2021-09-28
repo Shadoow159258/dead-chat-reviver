@@ -1,4 +1,4 @@
-# Always exclute
+# Always exclude
 node_modules
 database.sqlite
 

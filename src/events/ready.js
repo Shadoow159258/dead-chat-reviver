@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-var dateFormat = require('dateformat');
-var now = new Date();
+const dateFormat = require('dateformat');
+const now = new Date();
 
 module.exports = {
 	name: 'ready',
