@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config.json");
-const revive = require("./src/revive.js")
+const revive = require("./src/revive.js");
 
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -53,4 +53,4 @@ setInterval(() => {
 
 
 // ++ LOGIN ++
-client.login(config.client.token)
+client.login(config.client.token);
