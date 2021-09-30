@@ -14,7 +14,7 @@ module.exports = {
 		const HelpEmbed = {
 			"title": "Help - Overview",
 			"description": `Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter. \nExtra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work! \n\nIf you want to speak to someone because you think you've found a bug or have a question about the bot, you can [join the support server](${config.support.invite}).`,
-			"color": int.14052462,
+			"color": 14052462,
 			"fields": [
 				{
 					"name": "**/help**",

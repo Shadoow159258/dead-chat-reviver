@@ -35,7 +35,7 @@ module.exports = {
 		const HelpEmbed = {
 			"title": "List of all active channels",
 			"description": `This is a list of all revive message channels and their settings on this server. \n\n${printSettings.join("\n")}`,
-			"color": int.14052462,
+			"color": 14052462,
 		};
 		return int.reply({ embeds: [HelpEmbed] });
 	},
