@@ -131,8 +131,9 @@ module.exports = {
 						return channel.send(msgObj);
 					}
 				}).catch((err) => {
-					// ignore missing permissions
-					if(err.code !== 50013) { 
+					// ignore some errors (missing access (2x), unknown message)
+					const ignore = [50013, 50001, 10008];
+					if (!ignore.includes(err.code)) {
 						console.error(err);
 					}
 				});
