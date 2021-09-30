@@ -96,7 +96,7 @@ module.exports = {
 		const Embed = {
 			"title": "Random Conversation Starter",
 			"description": `__**${questions[Math.floor(Math.random() * questions.length)]}**__`,
-			"color": int.guild.me.displayColor,
+			"color": int.14052462,
 		};
 		const btn = new MessageActionRow().addComponents(new MessageButton().setCustomId('newTopic').setLabel('New Topic').setStyle('PRIMARY'));
 		const dbtn = new MessageActionRow().addComponents(new MessageButton().setCustomId('newTopic').setLabel('New Topic').setStyle('PRIMARY').setDisabled(true));

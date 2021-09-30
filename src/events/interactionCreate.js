@@ -62,7 +62,7 @@ module.exports = {
 					Embed = {
 						"title": "Uptime",
 						"description": `The Bot's uptime is **${msToTime(client.uptime)}**`,
-						"color": int.guild.me.displayColor,
+						"color": int.14052462,
 						"timestamp": new Date(),
 					};
 					int.reply({ embeds: [Embed] });
@@ -71,7 +71,7 @@ module.exports = {
 					Embed = {
 						"title": "Ping",
 						"description": `Websocket heartbeat: **${client.ws.ping}ms**`,
-						"color": int.guild.me.displayColor,
+						"color": int.14052462,
 						"timestamp": new Date(),
 					};
 					int.reply({ embeds: [Embed] });
@@ -80,7 +80,7 @@ module.exports = {
 					Embed = {
 						"title": "Live Information",
 						"description": `**Tag:** ${client.user.tag} \n**ID:** \`${client.user.id}\` \n**In guilds:** ${client.guilds.cache.size} \n**Users:** ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} \n**Status:** ${client.user.presence.status} \n**Activity:** ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`,
-						"color": int.guild.me.displayColor,
+						"color": int.14052462,
 						"timestamp": new Date(),
 					};
 					int.reply({ embeds: [Embed] });
@@ -89,7 +89,7 @@ module.exports = {
 					Embed = {
 						"title": "Changelog",
 						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
-						"color": int.guild.me.displayColor,
+						"color": int.14052462,
 					};
 					int.reply({ embeds: [Embed] });
 					break;

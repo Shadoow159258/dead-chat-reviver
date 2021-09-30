@@ -106,7 +106,7 @@ module.exports = {
 									"title": "Revive the chat!",
 									"description": `If you don't know what to talk about, here's a random topic (Use \`/topic\` to generate these manually):
 									\n__**${questions[Math.floor(Math.random() * questions.length)]}**__`,
-									"color": guild.me.displayColor,
+									"color": 14052462,
 								}]
 							}
 							if (entry.role.length > 0) {
@@ -121,7 +121,7 @@ module.exports = {
 								"title": "Revive the chat!",
 								"description": `If you don't know what to talk about, here's a random topic (Use \`/topic\` to generate these manually):
 								\n__**${questions[Math.floor(Math.random() * questions.length)]}**__`,
-								"color": guild.me.displayColor,
+								"color": 14052462,
 							}]
 						}
 						if (entry.role.length > 0) {
