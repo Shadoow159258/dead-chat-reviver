@@ -51,7 +51,7 @@ module.exports = {
 		const btn2 = new MessageActionRow()
 			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
 			.addComponents(new MessageButton().setLabel('Invite Me').setStyle('LINK').setURL(`${config.client.invite}`))
-			.addComponents(new MessageButton().setLabel('Top.gg').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}`))
+			.addComponents(new MessageButton().setLabel('Vote').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}/vote`))
 
 
 		int.reply({ embeds: [HelpEmbed], components: [btn1, btn2] });
