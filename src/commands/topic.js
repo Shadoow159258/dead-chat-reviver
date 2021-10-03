@@ -106,7 +106,12 @@ module.exports = {
 				.then(async (int) => {
 					// interaction (button) received
 					Embed.description = `__**${questions[Math.floor(Math.random() * questions.length)]}**__`;
-					const msg = await int.update({ embeds: [Embed], components: [btn], fetchReply: true });
+					const msg = await int.update({ embeds: [Embed], components: [btn], fetchReply: true })
+						.catch((err) => {
+							if (err.code !== 10008) {
+								console.error(err);
+							} else return;
+						});
 					newTopic(msg);
 				}).catch(() => {
 					// nothing received after 1 minute
@@ -114,7 +119,12 @@ module.exports = {
 				});
 		}
 
-		const msg = await int.reply({ embeds: [Embed], components: [btn], fetchReply: true });
+		const msg = await int.reply({ embeds: [Embed], components: [btn], fetchReply: true })
+			.catch((err) => {
+				if (err.code !== 10008) {
+					console.error(err);
+				} else return;
+			});
 		return newTopic(msg);
 	},
 };
