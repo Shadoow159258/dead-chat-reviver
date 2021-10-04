@@ -90,6 +90,9 @@ module.exports = {
 	description: 'Find out how to setup the bot!',
 	permissions: "manager",
 	async execute(int, client) {
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+		
 		// ++ GENERAL ++ 
 		const opt = {
 			channel: int.options.getChannel('channel'),

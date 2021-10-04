@@ -3,6 +3,9 @@ module.exports = {
 	description: 'Remove a revive message channel',
 	permissions: "manager",
 	async execute(int, client) {
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+
 		// check channel type
 		const channel = int.options.getChannel('channel');
 		if (channel.type !== "GUILD_TEXT") return int.reply("<:error:887414219845292052> Please enter a valid, existing text channel!");

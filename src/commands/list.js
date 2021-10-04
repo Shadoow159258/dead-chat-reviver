@@ -21,6 +21,9 @@ module.exports = {
 	description: 'Display all active revive message channel',
 	permissions: "manager",
 	async execute(int, client) {
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+		
 		const revives = await client.revive.findAll();
 		const printSettings = [];
 		revives.forEach((elem) => {

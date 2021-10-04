@@ -5,6 +5,9 @@ module.exports = {
 	name: 'topic',
 	description: 'Sends a random conversation starter to revive the chat',
 	async execute(int, client) {
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+		
 		const questions = [
 			"If You Had Three Wishes, What Would You Wish For?",
 			"What Would You Rather Throw Away: Love Or Money?",

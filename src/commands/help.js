@@ -5,6 +5,9 @@ module.exports = {
 	name: 'help',
 	description: 'Display some help and information about the bot',
 	async execute(int, client) {
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+		
 		const setup = [
 			"`channel` - The channel on which these rules should apply",
 			"`time` - Amount of time the channel should be inactive for the bot to activate",
@@ -37,8 +40,8 @@ module.exports = {
 					"value": "Sends a random conversation starter to help reviving the chat.",
 				},
 				{
-					"name": "**__Bot Info__**",
-					"value": `[Developer's Website](${config.creator.web} "poldisweb.de") | Creator's Tag: ${config.creator.tag}`,
+					"name": "**__Dev Info__**",
+					"value": `[Developer's Website](${config.dev.web} "poldisweb.de") | dev's Tag: ${config.dev.tag}`,
 				}
 			]
 		};
@@ -47,6 +50,7 @@ module.exports = {
 			.addComponents(new MessageButton().setCustomId('uptime').setLabel('Uptime').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('ping').setLabel('Ping').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('info').setLabel('Live Info').setStyle('PRIMARY'))
+			.addComponents(new MessageButton().setCustomId('statistics').setLabel('Statistics').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('changelog').setLabel('Changelog').setStyle('PRIMARY'))
 		const btn2 = new MessageActionRow()
 			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
