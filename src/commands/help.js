@@ -7,7 +7,7 @@ module.exports = {
 	async execute(int, client) {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
-		
+
 		const setup = [
 			"`channel` - The channel on which these rules should apply",
 			"`time` - Amount of time the channel should be inactive for the bot to activate",
@@ -41,7 +41,7 @@ module.exports = {
 				},
 				{
 					"name": "**__Dev Info__**",
-					"value": `[Developer's Website](${config.dev.web} "poldisweb.de") | dev's Tag: ${config.dev.tag}`,
+					"value": `[Developer's Website](${config.dev.web} "poldisweb.de") | Discord Tag: ${config.dev.tag}`,
 				}
 			]
 		};
@@ -53,9 +53,9 @@ module.exports = {
 			.addComponents(new MessageButton().setCustomId('statistics').setLabel('Statistics').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('changelog').setLabel('Changelog').setStyle('PRIMARY'))
 		const btn2 = new MessageActionRow()
-			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
 			.addComponents(new MessageButton().setLabel('Invite Me').setStyle('LINK').setURL(`${config.client.invite}`))
 			.addComponents(new MessageButton().setLabel('Vote').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}/vote`))
+			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
 
 
 		int.reply({ embeds: [HelpEmbed], components: [btn1, btn2] });
