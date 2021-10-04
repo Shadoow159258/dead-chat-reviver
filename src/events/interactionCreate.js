@@ -9,10 +9,10 @@ const msToTime = (ms) => {
 	hour = hour % 24;
 
 	let units = [];
-	switch (day) { case 0: break; case 1: units.push("1 day"); break; default: units.push(day + " days"); };
-	switch (hour) { case 0: break; case 1: units.push("1 hour"); break; default: units.push(hour + " hours"); };
-	switch (minute) { case 0: break; case 1: units.push("1 minute"); break; default: units.push(minute + " minutes"); };
-	switch (seconds) { case 0: break; case 1: units.push("1 second"); break; default: units.push(seconds + " seconds"); };
+	switch (day) { case 0: break; case 1: units.push("1 day"); break; default: units.push(day + " days"); }
+	switch (hour) { case 0: break; case 1: units.push("1 hour"); break; default: units.push(hour + " hours"); }
+	switch (minute) { case 0: break; case 1: units.push("1 minute"); break; default: units.push(minute + " minutes"); }
+	switch (seconds) { case 0: break; case 1: units.push("1 second"); break; default: units.push(seconds + " seconds"); }
 
 	return units.join(", ");
 }
@@ -64,7 +64,7 @@ module.exports = {
 						"description": `The Bot's uptime is **${msToTime(client.uptime)}**`,
 						"color": 14052462,
 						"timestamp": new Date(),
-					};
+					}
 					int.reply({ embeds: [Embed] });
 					break;
 				case "ping":
@@ -73,7 +73,7 @@ module.exports = {
 						"description": `Websocket heartbeat: **${client.ws.ping}ms**`,
 						"color": 14052462,
 						"timestamp": new Date(),
-					};
+					}
 					int.reply({ embeds: [Embed] });
 					break;
 				case "info":
@@ -82,7 +82,24 @@ module.exports = {
 						"description": `**Tag:** ${client.user.tag} \n**ID:** \`${client.user.id}\` \n**In guilds:** ${client.guilds.cache.size} \n**Users:** ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} \n**Status:** ${client.user.presence.status} \n**Activity:** ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`,
 						"color": 14052462,
 						"timestamp": new Date(),
-					};
+					}
+					int.reply({ embeds: [Embed] });
+					break;
+				case "statistics":
+					Embed = {
+						"title": "Command Statistics",
+						"fields": [],
+						"color": 14052462,
+						"timestamp": new Date(),
+					}
+					const stats = await client.stats.findAll();
+					stats.forEach((stat) => {
+						Embed.fields.push({
+							"name": `**/${stat.name}**`,
+							"value": `${stat.uses}`,
+							"inline": true,
+						});
+					});
 					int.reply({ embeds: [Embed] });
 					break;
 				case "changelog":
@@ -90,10 +107,10 @@ module.exports = {
 						"title": "Changelog",
 						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
 						"color": 14052462,
-					};
+					}
 					int.reply({ embeds: [Embed] });
 					break;
 			}
 		}
 	}
-};
+}
