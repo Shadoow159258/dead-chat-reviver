@@ -1,3 +1,6 @@
+const { MessageActionRow, MessageButton } = require('discord.js');
+const config = require("../config.json");
+
 module.exports = {
 	async execute(client) {
 		const revives = await client.revive.findAll();
@@ -88,6 +91,10 @@ module.exports = {
 			"If you could go anywhere in the world, where would you choose and why?",
 			"What is something you wish you could do everyday?",
 		];
+		const btnLinks = new MessageActionRow()
+			.addComponents(new MessageButton().setLabel('Invite Me').setStyle('LINK').setURL(`${config.client.invite}`))
+			.addComponents(new MessageButton().setLabel('Vote').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}/vote`))
+			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
 
 		for (const entry of revives) {
 			const channel = client.channels.cache.get(entry.channelId);
@@ -107,7 +114,8 @@ module.exports = {
 									"description": `If you don't know what to talk about, here's a random topic (Use \`/topic\` to generate these manually):
 									\n__**${questions[Math.floor(Math.random() * questions.length)]}**__`,
 									"color": 14052462,
-								}]
+								}],
+								components: [btnLinks],
 							}
 							if (entry.role.length > 0) {
 								const role = guild.roles.cache.get(entry.role);
@@ -122,12 +130,14 @@ module.exports = {
 								"description": `If you don't know what to talk about, here's a random topic (Use \`/topic\` to generate these manually):
 								\n__**${questions[Math.floor(Math.random() * questions.length)]}**__`,
 								"color": 14052462,
-							}]
+							}],
+							components: [btnLinks],
 						}
 						if (entry.role.length > 0) {
 							const role = guild.roles.cache.get(entry.role);
 							msgObj.content = `<@&${role.id}>`;
 						}
+
 						return channel.send(msgObj);
 					}
 				}).catch((err) => {
