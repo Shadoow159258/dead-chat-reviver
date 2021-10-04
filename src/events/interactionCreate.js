@@ -64,6 +64,9 @@ module.exports = {
 						"description": `The Bot's uptime is **${msToTime(client.uptime)}**`,
 						"color": 14052462,
 						"timestamp": new Date(),
+						"footer": {
+							"text": `${user.tag}`
+						},
 					}
 					int.reply({ embeds: [Embed] });
 					break;
@@ -73,6 +76,9 @@ module.exports = {
 						"description": `Websocket heartbeat: **${client.ws.ping}ms**`,
 						"color": 14052462,
 						"timestamp": new Date(),
+						"footer": {
+							"text": `${user.tag}`
+						},
 					}
 					int.reply({ embeds: [Embed] });
 					break;
@@ -82,6 +88,9 @@ module.exports = {
 						"description": `**Tag:** ${client.user.tag} \n**ID:** \`${client.user.id}\` \n**In guilds:** ${client.guilds.cache.size} \n**Users:** ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} \n**Status:** ${client.user.presence.status} \n**Activity:** ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`,
 						"color": 14052462,
 						"timestamp": new Date(),
+						"footer": {
+							"text": `${user.tag}`
+						},
 					}
 					int.reply({ embeds: [Embed] });
 					break;
@@ -91,6 +100,9 @@ module.exports = {
 						"fields": [],
 						"color": 14052462,
 						"timestamp": new Date(),
+						"footer": {
+							"text": `${user.tag}`
+						},
 					}
 					const stats = await client.stats.findAll();
 					stats.forEach((stat) => {
@@ -107,6 +119,9 @@ module.exports = {
 						"title": "Changelog",
 						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
 						"color": 14052462,
+						"footer": {
+							"text": `${user.tag}`
+						},
 					}
 					int.reply({ embeds: [Embed] });
 					break;
