@@ -119,7 +119,7 @@ module.exports = {
 		// ++ SERVER SIZE **
 		if(time < 3600000) {
 			if(int.guild.memberCount < 10000) {
-				return int.reply("<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 hour (can be less if the server has more than 10.000 members) and a maximum of 7 days.");
+				return int.reply("<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 hour (**can be less if the server has more than 10.000 members**) and a maximum of 7 days.");
 			}
 		}
 
