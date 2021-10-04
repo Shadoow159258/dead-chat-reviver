@@ -57,15 +57,15 @@ module.exports = {
 				if (stat.isDirectory()) {
 					registerCmds(path.join(dir, file))
 				} else if (file.endsWith('.js')) {
-					registerCmd.push(`Registering (/) command: ${file.slice(0, -3)}`);
+					registerCmd.push({ name: file.slice(0, -3), filename: file.toString() });
 					i++;
 				}
 			}
 		}
 		registerCmds('../slashData');
 		console.log('Registering ' + i + ' commands');
-		registerCmd.forEach(reg => {
-			console.log(reg);
+		registerCmd.forEach((reg) => {
+			console.log(`Registering (/) command: ${reg.name}`);
 		});
 
 		// All the other things
@@ -73,19 +73,23 @@ module.exports = {
 
 		// Databases
 		await client.revive.sync();
-		console.log("Database Synced");
+		await client.stats.sync();
+		registerCmd.forEach(async (reg) => {
+			await client.stats.create({
+				name: reg.name,
+				file: reg.file,
+				uses: 0,
+			}).catch(() => { });
+		});
+		console.log("Databases Synced");
 
 		// await require("../register").execute(client);
 
 		console.log('-------------------DONE--------------------');
 
-
 		// Update bot pressence (user count)
 		setInterval(() => {
-			client.user.setPresence({
-				status: 'online', //online, idle & dnd
-				activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }]
-			});
+			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
 		}, 3600000) // 1 hour
 	},
 };

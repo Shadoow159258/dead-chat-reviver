@@ -22,6 +22,18 @@ client.revive = sequelize.define('revive', {
 	role: Sequelize.STRING,
 	time: Sequelize.INTEGER,
 });
+client.stats = sequelize.define('stats', {
+	name: {
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	file: Sequelize.STRING,
+	uses: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false,
+	},
+});
 
 exports.client = client;
 
