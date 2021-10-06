@@ -46,7 +46,7 @@ const timeToMs = (str) => {
 			}
 
 			if (ms > 604800000) {
-				return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 minute and a maximum of 7 days."];
+				return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
 			} else {
 				msValues.push(ms);
 			}
@@ -57,8 +57,8 @@ const timeToMs = (str) => {
 			totalMs += val;
 		});
 
-		if (totalMs < 60000 || totalMs > 604800000) {
-			return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 minute and a maximum of 7 days."];
+		if (totalMs < 1800000 || totalMs > 604800000) {
+			return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
 		} else {
 			const successstr = `<:success:887414468324253737> Success! I will send a message if CHANNEL_MENTION_HERE has no activity for ${msToTime(totalMs)}`;
 			return [true, successstr, totalMs];
@@ -92,7 +92,7 @@ module.exports = {
 	async execute(int, client) {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
-		
+
 		// ++ GENERAL ++ 
 		const opt = {
 			channel: int.options.getChannel('channel'),
@@ -116,13 +116,6 @@ module.exports = {
 
 		const time = ms[2];
 
-		// ++ SERVER SIZE **
-		if(time < 3600000) {
-			if(int.guild.memberCount < 10000) {
-				return int.reply("<:error:887414219845292052> Your timer is either too short or too long. It must last at least 1 hour (**can be less if the server has more than 10.000 members**) and a maximum of 7 days.");
-			}
-		}
-
 
 		// ++ ROLE ++
 		let roleId;
@@ -135,7 +128,7 @@ module.exports = {
 
 		// ++ CHECK PERMISSIONS ++
 		const chPe = opt.channel.permissionsFor(int.guild.me);
-		if(!chPe.has("SEND_MESSAGES") || !chPe.has("READ_MESSAGE_HISTORY") || !chPe.has("EMBED_LINKS")) {
+		if (!chPe.has("SEND_MESSAGES") || !chPe.has("READ_MESSAGE_HISTORY") || !chPe.has("EMBED_LINKS")) {
 			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again! \n\nRequired Permissions: \`SEND_MESSAGES\`, \`READ_MESSAGE_HISTORY\`, \`EMBED_LINKS\``);
 		}
 
