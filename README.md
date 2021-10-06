@@ -42,4 +42,4 @@ The `timeToMs` as well as `msToTime` functions were originally built by [saucyle
 [Top.gg](https://top.gg/bot/887293151998529576 "top.gg")  
 [Developer's Website](https://poldisweb.de "poldisweb.de")  
 
-Creator's Discord Tag: `Poldi#0001`  
+Creator's Discord Tag: `Poldi#2898`  
