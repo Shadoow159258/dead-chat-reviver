@@ -24,6 +24,8 @@ module.exports = {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
 		
+		await int.deferReply();
+
 		const revives = await client.revive.findAll();
 		const printSettings = [];
 		revives.forEach((elem) => {
@@ -40,6 +42,6 @@ module.exports = {
 			"description": `This is a list of all revive message channels and their settings on this server. \n\n${printSettings.join("\n")}`,
 			"color": 14052462,
 		};
-		return int.reply({ embeds: [HelpEmbed] });
+		return int.editReply({ embeds: [HelpEmbed] });
 	},
 };
