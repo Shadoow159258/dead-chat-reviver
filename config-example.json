@@ -20,5 +20,8 @@
 	},
 	"channel": {
 		"joins": ""
+	},
+	"api": {
+		"port": 3000
 	}
 }

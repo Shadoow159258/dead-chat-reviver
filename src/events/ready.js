@@ -77,7 +77,6 @@ module.exports = {
 		registerCmd.forEach(async (reg) => {
 			await client.stats.create({
 				name: reg.name,
-				file: reg.file,
 				uses: 0,
 			}).catch(() => { });
 		});
@@ -87,9 +86,13 @@ module.exports = {
 
 		console.log('-------------------DONE--------------------');
 
+
 		// Update bot pressence (user count)
 		setInterval(() => {
 			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
 		}, 3600000) // 1 hour
+		
+		// API
+		await require("@src/api/initialize");
 	},
 };
