@@ -1,13 +1,16 @@
 // ++ REQUIRE ++
+require('module-alias/register');
 const Sequelize = require('sequelize');
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config.json");
 const revive = require("./src/revive.js");
 
+
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 client.commands = new Discord.Collection();
+
 
 // ++ SEQUELIZE ++
 const sequelize = new Sequelize('database', 'user', 'password', {
@@ -27,15 +30,12 @@ client.stats = sequelize.define('stats', {
 		type: Sequelize.STRING,
 		unique: true,
 	},
-	file: Sequelize.STRING,
 	uses: {
 		type: Sequelize.INTEGER,
 		defaultValue: 0,
 		allowNull: false,
 	},
 });
-
-exports.client = client;
 
 
 // ++ EVENTS ++
@@ -66,3 +66,7 @@ setInterval(() => {
 
 // ++ LOGIN ++
 client.login(config.client.token);
+
+module.exports = {
+	client: client
+};
