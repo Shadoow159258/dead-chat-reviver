@@ -56,6 +56,7 @@ module.exports = {
 			.addComponents(new MessageButton().setLabel('Invite Me').setStyle('LINK').setURL(`${config.client.invite}`))
 			.addComponents(new MessageButton().setLabel('Vote').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}/vote`))
 			.addComponents(new MessageButton().setLabel('Support Server').setStyle('LINK').setURL(`${config.support.invite}`))
+			.addComponents(new MessageButton().setLabel('Website').setStyle('LINK').setURL(`${config.client.web}`))
 
 
 		int.reply({ embeds: [HelpEmbed], components: [btn1, btn2] });
