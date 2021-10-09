@@ -1,4 +1,4 @@
-const config = require("../../config.json");
+const config = require("@root/config.json");
 function ord(i) {
 	var j = i % 10,
 		k = i % 100;

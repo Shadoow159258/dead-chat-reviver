@@ -1,4 +1,4 @@
-const config = require("../../config.json");
+const config = require("@root/config.json");
 const moment = require("moment");
 
 module.exports = {
