@@ -97,6 +97,7 @@ module.exports = {
 		const opt = {
 			channel: int.options.getChannel('channel'),
 			time: int.options.getString('time'),
+			role: "",
 		}
 		if (int.options.getRole('role')) opt.role = int.options.getRole('role');
 
@@ -118,18 +119,16 @@ module.exports = {
 
 
 		// ++ ROLE ++
-		let roleId;
-		if (opt.role) {
-			roleId = opt.role.id;
-		} else {
-			roleId = "";
-		}
-
+		const roleId = opt.role ? opt.role.id : "";
 
 		// ++ CHECK PERMISSIONS ++
 		const chPe = opt.channel.permissionsFor(int.guild.me);
 		if (!chPe.has("SEND_MESSAGES") || !chPe.has("READ_MESSAGE_HISTORY") || !chPe.has("EMBED_LINKS")) {
+			await client.revive.destroy({ where: { channelId: opt.channel.id } });
 			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again! \n\nRequired Permissions: \`SEND_MESSAGES\`, \`READ_MESSAGE_HISTORY\`, \`EMBED_LINKS\``);
+		}
+		if (roleId.length > 0 && !chPe.has("MENTION_EVERYONE")) {
+			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \n\nMissing Permissions: \`MENTION_EVERYONE\``);
 		}
 
 
