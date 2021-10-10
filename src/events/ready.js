@@ -87,12 +87,13 @@ module.exports = {
 		console.log('-------------------DONE--------------------');
 
 
-		// Update bot pressence (user count)
 		setInterval(() => {
+			// Update bot pressence (user count)
 			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
+
+			// API
+			require("@src/api/initialize");
 		}, 3600000) // 1 hour
-		
-		// API
 		await require("@src/api/initialize");
 	},
 };
