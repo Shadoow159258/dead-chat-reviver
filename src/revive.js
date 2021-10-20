@@ -142,8 +142,8 @@ module.exports = {
 						return channel.send(msgObj);
 					}
 				}).catch((err) => {
-					// ignore some errors (missing access (2x), unknown message, server error)
-					const ignore = [50013, 50001, 10008, 500];
+					// ignore some errors (missing access (2x), unknown message, server error, bad gateway)
+					const ignore = [50013, 50001, 10008, 500, 502];
 					if (!ignore.includes(err.code)) {
 						console.error(err);
 					}
