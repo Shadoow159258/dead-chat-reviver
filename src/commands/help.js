@@ -43,7 +43,10 @@ module.exports = {
 					"name": "**__Dev Info__**",
 					"value": `[Developer's Website](${config.dev.web} "poldisweb.de") | Discord Tag: ${config.dev.tag}`,
 				}
-			]
+			],
+			"footer": {
+				"text": `Requested by ${int.user.tag}`
+			},
 		};
 
 		const btn1 = new MessageActionRow()

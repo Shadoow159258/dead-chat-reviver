@@ -1,3 +1,4 @@
+const outputErr = require("@tools/error");
 const msToTime = (ms) => {
 	let day, hour, minute, seconds;
 	seconds = Math.floor(ms / 1000);
@@ -23,7 +24,7 @@ const timeToMs = (str) => {
 	const initialMatch = str.match(timeRegex);
 
 	if (!initialMatch) {
-		return [false, "<:error:887414219845292052> Please enter time in the valid format. \nFor example, `2m` will activate the bot if no messages are sent for 2 minutes. \nUse the letters s, m, h, and d to specify **s**econds, **m**inutes, **h**ours, and **d**ays."];
+		return [false, "Please enter time in the valid format. \nFor example, `2m` will activate the bot if no messages are sent for 2 minutes. \nUse the letters s, m, h, and d to specify **s**econds, **m**inutes, **h**ours, and **d**ays."];
 	} else {
 		const msValues = [];
 		initialMatch.forEach(match => {
@@ -46,7 +47,7 @@ const timeToMs = (str) => {
 			}
 
 			if (ms > 604800000) {
-				return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
+				return [false, "Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
 			} else {
 				msValues.push(ms);
 			}
@@ -58,31 +59,12 @@ const timeToMs = (str) => {
 		});
 
 		if (totalMs < 1800000 || totalMs > 604800000) {
-			return [false, "<:error:887414219845292052> Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
+			return [false, "Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
 		} else {
 			const successstr = `<:success:887414468324253737> Success! I will send a message if CHANNEL_MENTION_HERE has no activity for ${msToTime(totalMs)}`;
 			return [true, successstr, totalMs];
 		}
 	}
-}
-const error = (int, type, custom) => {
-	let reason;
-	switch (type) {
-		case "channel":
-			reason = "<:error:887414219845292052> Please enter a valid, existing text channel!";
-			break;
-		case "time":
-			reason = custom;
-			break;
-		case "role":
-			reason = "<:error:887414219845292052> Please enter a valid, existing role!";
-			break;
-
-		default:
-			reason = "<:error:887414219845292052> An error occured!"
-			break;
-	}
-	int.reply({ content: `${reason}` });
 }
 
 module.exports = {
@@ -103,8 +85,8 @@ module.exports = {
 
 
 		// ++ CHANNEL ++
-		if (opt.channel.type !== "GUILD_TEXT") return error(int, "channel");
-		if (!int.guild.channels.cache.has(opt.channel.id)) return error(int, "channel");
+		if (opt.channel.type !== "GUILD_TEXT") return outputErr(int, "text-channel-req");
+		if (!int.guild.channels.cache.has(opt.channel.id)) return outputErr(int, "text-channel-req");
 
 
 		// ++ TIME ++
@@ -113,7 +95,7 @@ module.exports = {
 		const ms = timeToMs(opt.time);
 
 		// time not meeting reqs
-		if (!ms[0]) return error(int, "time", ms[1]);
+		if (!ms[0]) return outputErr(int, "time", ms[1]);
 
 		const time = ms[2];
 
