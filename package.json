@@ -16,6 +16,8 @@
 	},
 	"_moduleAliases": {
 		"@root": "./",
-		"@src": "src/"
+		"@src": "src/",
+		"@api": "src/api/",
+		"@tools": "src/tools/"
 	}
 }
