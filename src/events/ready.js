@@ -11,9 +11,9 @@ module.exports = {
 		// Bot information
 		console.log('\x1b[44m%s\x1b[0m', '===================INFO====================');
 		console.log(`Bot tag/Client: ${client.user.tag}`); // Bot tag
-		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT")); // Start time
-		console.log(`In guilds: ${client.guilds.cache.size}`); // Count of guilds the bot is in
-		console.log(`Users: ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)}`) // Count of members in all guilds
+		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
+		console.log(`In guilds: ${client.guilds.cache.size}`);
+		console.log(`Users: ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)}`);
 		client.user.setPresence({
 			status: 'online', //online, idle & dnd
 			activities: [{
@@ -82,18 +82,21 @@ module.exports = {
 		});
 		console.log("Databases Synced");
 
-		// await require("../register").execute(client);
+		// Deploy Slash Commands
+		const reg = require("@tools/register");
+		// await reg(client, { "type": "global" });
+		// await reg(client, { "type": "guild", "guildId": "866435905782808606" });
 
 		console.log('-------------------DONE--------------------');
 
 
-		setInterval(() => {
+		setInterval(async () => {
 			// Update bot pressence (user count)
 			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
 
 			// API
-			require("@src/api/initialize");
+			await require("@api/initialize");
 		}, 3600000) // 1 hour
-		await require("@src/api/initialize");
+		await require("@api/initialize");
 	},
 };

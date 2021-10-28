@@ -4,7 +4,7 @@ const app = express();
 const config = require("@root/config.json");
 
 // routes
-const stats = require("@src/api/stats");
+const stats = require("@api/stats");
 
 // app
 app.listen(config.api.port, () => {

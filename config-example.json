@@ -6,10 +6,6 @@
 		"invite": "",
 		"web": ""
 	},
-	"version": {
-		"v": "0.0",
-		"release": ""
-	},
 	"dev": {
 		"name": "Poldi",
 		"tag": "Poldi#2898",

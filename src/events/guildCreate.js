@@ -17,7 +17,7 @@ function ord(i) {
 module.exports = {
 	name: 'guildCreate',
 	async execute(guild, client) {
-		// join embed
+		// added to a new guild embed
 		const Embed = {
 			"description": `**Name:** ${guild.name} \n**ID:** \`${guild.id}\` \n**Members:** ${guild.memberCount}`,
 			"color": 3066993,

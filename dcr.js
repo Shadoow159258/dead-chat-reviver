@@ -3,8 +3,8 @@ require('module-alias/register');
 const Sequelize = require('sequelize');
 const Discord = require("discord.js");
 const fs = require("fs");
-const config = require("./config.json");
-const revive = require("./src/revive.js");
+const config = require("@root/config.json");
+const revive = require("@tools/revive");
 
 
 // ++ CLIENT ++
@@ -60,7 +60,7 @@ for (const file of commandFiles) {
 
 // ++ REVIVE CHAT MESSAGES ++
 setInterval(() => {
-	revive.execute(client);
+	revive(client);
 }, 120000); // 2 minutes
 
 
