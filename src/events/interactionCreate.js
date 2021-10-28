@@ -1,3 +1,5 @@
+const outputErr = require("@tools/error");
+
 const msToTime = (ms) => {
 	let day, hour, minute, seconds;
 	seconds = Math.floor(ms / 1000);
@@ -28,35 +30,38 @@ module.exports = {
 			const command = client.commands.get(int.commandName);
 
 			if (command.permissions) {
+				// transform strings into an array
 				if (typeof command.permissions === "string") {
 					command.permissions = [command.permissions];
 				}
 
+				// loop through array of permissions
 				for (const perm of command.permissions) {
 					switch (perm) {
 						case "admin":
-							if (!member.permissions.has("ADMINISTRATOR")) return int.reply({ content: `You do not have the permissions to use this command!` });
+							if (!member.permissions.has("ADMINISTRATOR")) return outputErr(int, 403);
 							break;
 						case "manager":
-							if (!member.permissions.has("MANAGE_CHANNELS") || !member.permissions.has("MANAGE_GUILD")) return int.reply({ content: `You do not have the permissions to use this command!` });
+							if (!member.permissions.has("MANAGE_CHANNELS") || !member.permissions.has("MANAGE_GUILD")) return outputErr(int, 403);
 							break;
 
 						default:
-							console.log(`unknown permissions requested in "${command.name}.js"`)
+							console.error(`Unknown permissions requested in "${command.name}.js": permission: "${perm}"`);
 							break;
 					}
 				}
 			}
 
 			try {
-				command.execute(int, client);
+				return command.execute(int, client);
 			} catch (error) {
 				console.error(error);
-				return int.reply({ content: `There was an error trying to execute that command!` });
+				return outputErr(int, 404);
 			}
 		}
 		if (int.isButton()) {
-			let Embed = false;
+			// switch for all possible buttons
+			let Embed = {};
 			switch (int.customId) {
 				case "uptime":
 					Embed = {
@@ -65,7 +70,7 @@ module.exports = {
 						"color": 14052462,
 						"timestamp": new Date(),
 						"footer": {
-							"text": `${user.tag}`
+							"text": `Requested by ${user.tag}`
 						},
 					}
 					int.reply({ embeds: [Embed] });
@@ -77,7 +82,7 @@ module.exports = {
 						"color": 14052462,
 						"timestamp": new Date(),
 						"footer": {
-							"text": `${user.tag}`
+							"text": `Requested by ${user.tag}`
 						},
 					}
 					int.reply({ embeds: [Embed] });
@@ -89,7 +94,7 @@ module.exports = {
 						"color": 14052462,
 						"timestamp": new Date(),
 						"footer": {
-							"text": `${user.tag}`
+							"text": `Requested by ${user.tag}`
 						},
 					}
 					int.reply({ embeds: [Embed] });
@@ -101,7 +106,7 @@ module.exports = {
 						"color": 14052462,
 						"timestamp": new Date(),
 						"footer": {
-							"text": `${user.tag}`
+							"text": `Requested by ${user.tag}`
 						},
 					}
 					const stats = await client.stats.findAll();
@@ -120,10 +125,15 @@ module.exports = {
 						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
 						"color": 14052462,
 						"footer": {
-							"text": `${user.tag}`
+							"text": `Requested by ${user.tag}`
 						},
 					}
 					int.reply({ embeds: [Embed] });
+					break;
+				default:
+					awaitedButtons = ["newTopic"];
+					if(!awaitedButtons.includes(int.customId))
+						console.error(`Unknown button used: customId: "${int.customId}"`);
 					break;
 			}
 		}
