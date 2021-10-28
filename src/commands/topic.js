@@ -14,6 +14,9 @@ module.exports = {
 			"title": "Random Conversation Starter",
 			"description": `__**${topics[Math.floor(Math.random() * topics.length)]}**__`,
 			"color": 14052462,
+			"footer": {
+				"text": `Requested by ${int.user.tag}`
+			},
 		};
 		const btn = new MessageActionRow().addComponents(new MessageButton().setCustomId('newTopic').setLabel('New Topic').setStyle('PRIMARY'));
 		const dbtn = new MessageActionRow().addComponents(new MessageButton().setCustomId('newTopic').setLabel('New Topic').setStyle('PRIMARY').setDisabled(true));
