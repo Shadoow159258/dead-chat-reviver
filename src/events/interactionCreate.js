@@ -132,7 +132,7 @@ module.exports = {
 					break;
 				default:
 					awaitedButtons = ["newTopic"];
-					if(!awaitedButtons.includes(int.customId))
+					if (!awaitedButtons.includes(int.customId))
 						console.error(`Unknown button used: customId: "${int.customId}"`);
 					break;
 			}

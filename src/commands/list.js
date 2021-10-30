@@ -37,7 +37,7 @@ module.exports = {
 			}
 		});
 		const ogLength = printSettings.length;
-		if(printSettings.length <= 0) printSettings.push("There are **no active revive message channels** on this server.")
+		if (printSettings.length <= 0) printSettings.push("There are **no active revive message channels** on this server.")
 
 		const HelpEmbed = {
 			"title": "List of all active channels",
