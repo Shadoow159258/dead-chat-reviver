@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js');
+const { MessageActionRow, MessageButton } = require("discord.js");
 const config = require("@root/config.json");
 const { topics } = config;
 
