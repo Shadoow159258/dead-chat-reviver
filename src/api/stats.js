@@ -8,7 +8,7 @@ route.get('/commands', async (req, res) => {
 });
 route.get('/servers', (req, res) => {
 	const guilds = client.guilds.cache.size;
-	const users = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+	const users = client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0);
 
 	res.send({ guilds: guilds, users: users });
 });

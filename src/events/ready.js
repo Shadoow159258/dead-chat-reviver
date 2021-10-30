@@ -13,11 +13,11 @@ module.exports = {
 		console.log(`Bot tag/Client: ${client.user.tag}`); // Bot tag
 		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
 		console.log(`In guilds: ${client.guilds.cache.size}`);
-		console.log(`Users: ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)}`);
+		console.log(`Users: ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)}`);
 		client.user.setPresence({
 			status: 'online', //online, idle & dnd
 			activities: [{
-				name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`,
+				name: `/help | Reviving ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)} users`,
 				type: 'PLAYING' // PLAYING, LISTENING, STREAMING & WATCHING
 			}]
 		});
@@ -84,7 +84,7 @@ module.exports = {
 
 		// Deploy Slash Commands
 		const reg = require("@tools/register");
-		// await reg(client, { "type": "global" });
+		await reg(client, { "type": "global" });
 		// await reg(client, { "type": "guild", "guildId": "866435905782808606" });
 
 		console.log('-------------------DONE--------------------');
@@ -92,7 +92,7 @@ module.exports = {
 
 		setInterval(async () => {
 			// Update bot pressence (user count)
-			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
+			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
 
 			// API
 			await require("@api/initialize");
