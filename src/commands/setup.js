@@ -24,7 +24,7 @@ const timeToMs = (str) => {
 	const initialMatch = str.match(timeRegex);
 
 	if (!initialMatch) {
-		return [false, "Please enter time in the valid format. \nFor example, `2m` will activate the bot if no messages are sent for 2 minutes. \nUse the letters s, m, h, and d to specify **s**econds, **m**inutes, **h**ours, and **d**ays."];
+		return [false, "Please enter time in the valid format. \nFor example, `30m` will activate the bot if no messages are sent for 30 minutes. \nUse the letters m, h, and d to specify **m**inutes, **h**ours, and **d**ays."];
 	} else {
 		const msValues = [];
 		initialMatch.forEach(match => {
