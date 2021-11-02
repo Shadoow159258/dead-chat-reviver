@@ -47,7 +47,7 @@ const timeToMs = (str) => {
 			}
 
 			if (ms > 604800000) {
-				return [false, "Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
+				return [false, "**Your timer is either too short or too long.** It must last at least 30 minutes and a maximum of 7 days. \nIf you think 30 minutes is too long, please join the support server and contact `Poldi#2898`."];
 			} else {
 				msValues.push(ms);
 			}
@@ -59,7 +59,7 @@ const timeToMs = (str) => {
 		});
 
 		if (totalMs < 1800000 || totalMs > 604800000) {
-			return [false, "Your timer is either too short or too long. It must last at least 30 minutes and a maximum of 7 days."];
+			return [false, "**Your timer is either too short or too long.** It must last at least 30 minutes and a maximum of 7 days. \nIf you think 30 minutes is too long, please join the support server and contact `Poldi#2898`."];
 		} else {
 			const successstr = `<:success:887414468324253737> Success! I will send a message if CHANNEL_MENTION_HERE has no activity for ${msToTime(totalMs)}`;
 			return [true, successstr, totalMs];
