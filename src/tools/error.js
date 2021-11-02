@@ -23,6 +23,10 @@ module.exports = (int, err, custom) => {
 	}
 
 	// reply to the interaction or send a follow up if already replied
-	if (!int.replied) int.reply({ content: `<:error:887414219845292052> ${errMsg}` })
-	else int.followUp({ content: `<:error:887414219845292052> ${errMsg}` });
+	if (!int.replied && !int.deferred)
+		int.reply({ content: `<:error:887414219845292052> ${errMsg}` })
+	else if (!int.deferred && int.replied)
+		int.followUp({ content: `<:error:887414219845292052> ${errMsg}` });
+	else
+		int.editReply({ content: `<:error:887414219845292052> ${errMsg}` });
 }
