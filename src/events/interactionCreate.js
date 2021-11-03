@@ -131,7 +131,7 @@ module.exports = {
 					int.reply({ embeds: [Embed] });
 					break;
 				default:
-					awaitedButtons = ["newTopic"];
+					awaitedButtons = ["newTopic", "cet"];
 					if (!awaitedButtons.includes(int.customId))
 						console.error(`Unknown button used: customId: "${int.customId}"`);
 					break;
