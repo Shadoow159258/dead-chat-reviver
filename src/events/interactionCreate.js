@@ -1,4 +1,5 @@
 const outputErr = require("@tools/error");
+const config = require("@root/config.json");
 
 const msToTime = (ms) => {
 	let day, hour, minute, seconds;
@@ -119,10 +120,10 @@ module.exports = {
 					});
 					int.reply({ embeds: [Embed] });
 					break;
-				case "changelog":
+				case "version":
 					Embed = {
-						"title": "Changelog",
-						"description": `You can view the Bot's changelog [here](https://github.com/poldis/dead-chat-reviver/commits/master "github.com").`,
+						"title": "Version",
+						"description": `This is bot is running DCR version \`${config.github.version}\`. \nYou can view the Bot's github repository [here](${config.github.repo} "github.com").`,
 						"color": 14052462,
 						"footer": {
 							"text": `Requested by ${user.tag}`
@@ -131,8 +132,8 @@ module.exports = {
 					int.reply({ embeds: [Embed] });
 					break;
 				default:
-					awaitedButtons = ["newTopic", "cet"];
-					if (!awaitedButtons.includes(int.customId))
+					const ignoredButtons = ["newTopic", "cet", "changelog"];
+					if (!ignoredButtons.includes(int.customId))
 						console.error(`Unknown button used: customId: "${int.customId}"`);
 					break;
 			}

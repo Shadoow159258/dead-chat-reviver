@@ -7,6 +7,10 @@
 		"web": "",
 		"owners": []
 	},
+	"github": {
+		"version": "0.0.0",
+		"repo": "https://github.com/poldis/dead-chat-reviver"
+	},
 	"dev": {
 		"name": "Poldi",
 		"tag": "Poldi#2898",

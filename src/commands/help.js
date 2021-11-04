@@ -16,7 +16,7 @@ module.exports = {
 
 		const HelpEmbed = {
 			"title": "Help - Overview",
-			"description": `Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter. \nExtra Info: If you chose a really small amount of time, it can still take up to 3 minutes to work! \n\nIf you want to speak to someone because you think you've found a bug or have a question about the bot, you can [join the support server](${config.support.invite}).`,
+			"description": `Helps preventing servers / channels from dying by sending a revive message after some time, as well as a ping and a random conversation starter. \nExtra Info: There can be a deviation of up to 4 minutes. \n\nIf you want to speak to someone because you think you've found a bug or have a question about the bot, you can [join the support server](${config.support.invite}).`,
 			"color": 14052462,
 			"fields": [
 				{
@@ -54,7 +54,7 @@ module.exports = {
 			.addComponents(new MessageButton().setCustomId('ping').setLabel('Ping').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('info').setLabel('Live Info').setStyle('PRIMARY'))
 			.addComponents(new MessageButton().setCustomId('statistics').setLabel('Statistics').setStyle('PRIMARY'))
-			.addComponents(new MessageButton().setCustomId('changelog').setLabel('Changelog').setStyle('PRIMARY'))
+			.addComponents(new MessageButton().setCustomId('version').setLabel('Version').setStyle('PRIMARY'))
 		const btn2 = new MessageActionRow()
 			.addComponents(new MessageButton().setLabel('Invite Me').setStyle('LINK').setURL(`${config.client.invite}`))
 			.addComponents(new MessageButton().setLabel('Vote').setStyle('LINK').setURL(`https://top.gg/bot/${client.user.id}/vote`))
