@@ -8,7 +8,7 @@ module.exports = {
 	description: 'Bot administrator tools',
 	async execute(int, client) {
 		// only owners
-		if (config.client.owners.includes(int.user.id)) return outputErr(int, 403);
+		if (!config.client.owners.includes(int.user.id)) return outputErr(int, 403);
 
 		const cmdForStats = await client.stats.findOne({ where: { name: this.name } });
 		cmdForStats.increment('uses'); // +1

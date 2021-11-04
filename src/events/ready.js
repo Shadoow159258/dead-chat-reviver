@@ -85,7 +85,7 @@ module.exports = {
 
 		// Deploy Slash Commands
 		const reg = require("@tools/register");
-		await reg(client, { "type": "global" });
+		// await reg(client, { "type": "global" });
 		// await reg(client, { "type": "guild", "guildId": "866435905782808606" });
 
 		// Initialize API
