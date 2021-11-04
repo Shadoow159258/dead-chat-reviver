@@ -7,8 +7,13 @@ module.exports = {
 	name: 'admin',
 	description: 'Bot administrator tools',
 	async execute(int, client) {
+		// only owners
 		if (config.client.owners.includes(int.user.id)) return outputErr(int, 403);
 
+		const cmd = await client.stats.findOne({ where: { name: this.name } });
+		cmd.increment('uses'); // +1
+
+		// defer the reply (answer could take time)
 		await int.deferReply();
 
 		const cmd = int.options.getString("command");
@@ -16,6 +21,7 @@ module.exports = {
 
 		switch (cmd.split(" ")[0]) {
 			case "eval":
+				// evaluate given string
 				const code = cmd.replace("eval ", "");
 				let err = false;
 
