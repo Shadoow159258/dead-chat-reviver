@@ -6,6 +6,7 @@ const now = new Date();
 module.exports = {
 	name: 'ready',
 	async execute(client) {
+		const totalUsers = client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0);
 		console.log('-------------------READY-------------------');
 
 		// Bot information
@@ -13,11 +14,11 @@ module.exports = {
 		console.log(`Bot tag/Client: ${client.user.tag}`); // Bot tag
 		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
 		console.log(`In guilds: ${client.guilds.cache.size}`);
-		console.log(`Users: ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)}`);
+		console.log(`Users: ${totalUsers}`);
 		client.user.setPresence({
 			status: 'online', //online, idle & dnd
 			activities: [{
-				name: `/help | Reviving ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)} users`,
+				name: `/help | Reviving ${totalUsers} users`,
 				type: 'PLAYING' // PLAYING, LISTENING, STREAMING & WATCHING
 			}]
 		});
@@ -87,16 +88,15 @@ module.exports = {
 		await reg(client, { "type": "global" });
 		// await reg(client, { "type": "guild", "guildId": "866435905782808606" });
 
+		// Initialize API
+		await require("@api/initialize");
+
 		console.log('-------------------DONE--------------------');
 
 
-		setInterval(async () => {
-			// Update bot pressence (user count)
-			client.user.setPresence({ activities: [{ name: `/help | Reviving ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)} users`, type: 'PLAYING' }] });
-
-			// API
-			await require("@api/initialize");
+		// Update bot pressence (user count)
+		setInterval(() => {
+			client.user.setActivity(`/help | Reviving ${totalUsers} users`);
 		}, 3600000) // 1 hour
-		await require("@api/initialize");
 	},
 };
