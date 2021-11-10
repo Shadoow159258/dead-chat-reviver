@@ -6,9 +6,9 @@ const fs = require("fs");
 const config = require("@root/config.json");
 const revive = require("@tools/revive");
 
-
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+client.events = new Discord.Collection();
 client.commands = new Discord.Collection();
 
 
@@ -47,6 +47,7 @@ for (const file of eventFiles) {
 	} else {
 		client.on(event.name, (...args) => event.execute(...args, client));
 	}
+	client.events.set(event.name, event);
 }
 
 
@@ -62,7 +63,6 @@ for (const file of commandFiles) {
 setInterval(() => {
 	revive(client);
 }, 120000); // 2 minutes
-
 
 // ++ LOGIN ++
 client.login(config.client.token);
