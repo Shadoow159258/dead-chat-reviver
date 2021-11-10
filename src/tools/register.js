@@ -8,6 +8,7 @@ module.exports = (client, reg) => {
 	const commands = [];
 	const commandFiles = fs.readdirSync('./src/slashData').filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
+		if (file === "admin.js") continue;
 		const command = require(`../slashData/${file}`);
 		commands.push(command.toJSON());
 	}
@@ -20,6 +21,11 @@ module.exports = (client, reg) => {
 			rest.put(
 				Routes.applicationGuildCommands(config.client.id, reg.guildId),
 				{ body: commands },
+			);
+		} else if (reg.type === "admin" && typeof reg.guildId === "string") {
+			rest.put(
+				Routes.applicationGuildCommands(config.client.id, reg.guildId),
+				{ body: [require("../slashData/admin.js").toJSON()] },
 			);
 		} else {
 			rest.put(
