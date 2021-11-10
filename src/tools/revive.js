@@ -12,7 +12,7 @@ module.exports = async (client) => {
 		.addComponents(new MessageButton().setLabel('Website').setStyle('LINK').setURL(`${config.client.web}`))
 
 	for (const entry of revives) {
-		const channel = await client.channels.resolve(entry.channelId);
+		const channel = await client.channels.fetch(entry.channelId);
 
 		channel.messages.fetch({ limit: 1 })
 			.then((msgs) => {
