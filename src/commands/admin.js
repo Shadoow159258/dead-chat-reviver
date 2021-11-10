@@ -10,9 +10,6 @@ module.exports = {
 		// only owners
 		if (!config.client.owners.includes(int.user.id)) return outputErr(int, 403);
 
-		const cmdForStats = await client.stats.findOne({ where: { name: this.name } });
-		cmdForStats.increment('uses'); // +1
-
 		// defer the reply (answer could take time)
 		await int.deferReply();
 
