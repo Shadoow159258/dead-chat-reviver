@@ -7,9 +7,10 @@ module.exports = {
 	name: 'ready',
 	async execute(client) {
 		const totalUsers = client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0);
+
 		console.log('-------------------READY-------------------');
 
-		// Bot information
+		// ++ BOT INFO ++
 		console.log('\x1b[44m%s\x1b[0m', '===================INFO====================');
 		console.log(`Bot tag/Client: ${client.user.tag}`); // Bot tag
 		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
@@ -25,62 +26,36 @@ module.exports = {
 		console.log(`Status: ${client.user.presence.status}`);
 		console.log(`Activity: ${client.user.presence.activities.map(activity => activity.type)} ${client.user.presence.activities}`);
 
-		// Events
+
+		// ++ EVENTS ++
 		console.log('\x1b[44m%s\x1b[0m', '==================EVENTS===================');
-		const registerEv = [];
-		let i = 0;
-		const registerEvs = (dir) => {
-			const files = fs.readdirSync(path.join(__dirname, dir))
-			for (const file of files) {
-				const stat = fs.lstatSync(path.join(__dirname, dir, file))
-				if (stat.isDirectory()) {
-					registerCmds(path.join(dir, file))
-				} else if (file.endsWith('.js')) {
-					registerEv.push(`Registering event: ${file.slice(0, -3)}`);
-					i++;
-				}
-			}
+		console.log('Registering ' + client.events.size + ' events');
+		for (const name of client.events.keys()) {
+			console.log(`Registering event: ${name}`);
 		}
-		registerEvs('./');
-		console.log('Registering ' + i + ' events');
-		registerEv.forEach(reg => {
-			console.log(reg);
-		});
 
-		// Commands
+
+		// ++ COMMANDS ++
 		console.log('\x1b[44m%s\x1b[0m', '=================COMMANDS==================');
-		const registerCmd = [];
-		i = 0;
-		const registerCmds = (dir) => {
-			const files = fs.readdirSync(path.join(__dirname, dir))
-			for (const file of files) {
-				const stat = fs.lstatSync(path.join(__dirname, dir, file))
-				if (stat.isDirectory()) {
-					registerCmds(path.join(dir, file))
-				} else if (file.endsWith('.js')) {
-					registerCmd.push({ name: file.slice(0, -3), filename: file.toString() });
-					i++;
-				}
-			}
+		console.log('Registering ' + client.commands.size + ' commands');
+		for (const name of client.commands.keys()) {
+			console.log(`Registering command: ${name}`);
 		}
-		registerCmds('../slashData');
-		console.log('Registering ' + i + ' commands');
-		registerCmd.forEach((reg) => {
-			console.log(`Registering (/) command: ${reg.name}`);
-		});
 
-		// All the other things
+
+		// ++ OTHERS ++
 		console.log('\x1b[44m%s\x1b[0m', '==================OTHERS===================');
 
 		// Databases
 		await client.revive.sync();
 		await client.stats.sync();
-		registerCmd.forEach(async (reg) => {
-			await client.stats.create({
-				name: reg.name,
+		for await (const name of client.commands.keys()) {
+			if (name === "admin") continue;
+			client.stats.create({
+				name: name,
 				uses: 0,
 			}).catch(() => { });
-		});
+		}
 		console.log("Databases Synced");
 
 		// Deploy Slash Commands
@@ -94,7 +69,7 @@ module.exports = {
 		console.log('-------------------DONE--------------------');
 
 
-		// Update bot pressence (user count)
+		// ++ UPDATE BOT PRESENCE ++
 		setInterval(() => {
 			client.user.setActivity(`/help | Reviving ${totalUsers} users`);
 		}, 3600000) // 1 hour
