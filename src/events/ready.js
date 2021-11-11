@@ -6,8 +6,6 @@ const now = new Date();
 module.exports = {
 	name: 'ready',
 	async execute(client) {
-		const totalUsers = client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0);
-
 		console.log('-------------------READY-------------------');
 
 		// ++ BOT INFO ++
@@ -15,11 +13,11 @@ module.exports = {
 		console.log(`Bot tag/Client: ${client.user.tag}`); // Bot tag
 		console.log('Time: ' + dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
 		console.log(`In guilds: ${client.guilds.cache.size}`);
-		console.log(`Users: ${totalUsers}`);
+		console.log(`Users: ${client.guilds.cache.filter((e) => e.memberCount).reduce((a, g) => a + g.memberCount, 0)}`);
 		client.user.setPresence({
 			status: 'online', //online, idle & dnd
 			activities: [{
-				name: `/help | Reviving ${totalUsers} users`,
+				name: `/help | Reviving ${client.guilds.cache.size} servers`,
 				type: 'PLAYING' // PLAYING, LISTENING, STREAMING & WATCHING
 			}]
 		});
@@ -71,7 +69,7 @@ module.exports = {
 
 		// ++ UPDATE BOT PRESENCE ++
 		setInterval(() => {
-			client.user.setActivity(`/help | Reviving ${totalUsers} users`);
+			client.user.setActivity(`/help | Reviving ${client.guilds.cache.size} servers`);
 		}, 3600000) // 1 hour
 	},
 };
