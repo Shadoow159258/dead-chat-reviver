@@ -1,54 +1,5 @@
 const outputErr = require("@tools/error");
-const { msToTime } = require("@tools/functions");
-const timeToMs = (str) => {
-	const timeRegex = /([0-9]+)( |)(s|m|h|d)/g;
-	const numRegex = /([0-9]+)/g;
-	const unitRegex = /(s|m|h|d)/g;
-	const initialMatch = str.match(timeRegex);
-
-	if (!initialMatch) {
-		return [false, "Please enter time in the valid format. \nFor example, `30m` will activate the bot if no messages are sent for 30 minutes. \nUse the letters m, h, and d to specify **m**inutes, **h**ours, and **d**ays."];
-	} else {
-		const msValues = [];
-		initialMatch.forEach(match => {
-			let num = Number(match.match(numRegex)[0]);
-			const unit = match.match(unitRegex)[0];
-
-			switch (unit) {
-				case "s":
-					var ms = num * 1000;
-					break;
-				case "m":
-					var ms = num * 60000;
-					break;
-				case "h":
-					var ms = num * 3.6e+6;
-					break;
-				case "d":
-					var ms = num * 8.64e+7;
-					break;
-			}
-
-			if (ms > 604800000) {
-				return [false, "**Your timer is either too short or too long.** It must last at least 30 minutes and a maximum of 7 days. \nIf you think 30 minutes is too long, please join the support server and contact `Poldi#2898`."];
-			} else {
-				msValues.push(ms);
-			}
-		});
-
-		var totalMs = 0;
-		msValues.forEach(val => {
-			totalMs += val;
-		});
-
-		if (totalMs < 1800000 || totalMs > 604800000) {
-			return [false, "**Your timer is either too short or too long.** It must last at least 30 minutes and a maximum of 7 days. \nIf you think 30 minutes is too long, please join the support server and contact `Poldi#2898`."];
-		} else {
-			const successstr = `<:success:887414468324253737> Success! I will send a message if CHANNEL_MENTION_HERE has no activity for ${msToTime(totalMs)}`;
-			return [true, successstr, totalMs];
-		}
-	}
-}
+const { msToTime, timeToMs } = require("@tools/functions");
 
 module.exports = {
 	name: 'setup',
@@ -62,9 +13,9 @@ module.exports = {
 		const opt = {
 			channel: int.options.getChannel('channel'),
 			time: int.options.getString('time'),
-			role: "",
+			role: null,
 		}
-		if (int.options.getRole('role')) opt.role = int.options.getRole('role');
+		if (int.options.getRole('role')) opt.role = int.options.getRole('role').id;
 
 
 		// ++ CHANNEL ++
@@ -74,17 +25,15 @@ module.exports = {
 
 		// ++ TIME ++
 		// time to ms
-		// 0: error | 1: msg | 2: ms
 		const ms = timeToMs(opt.time);
 
 		// time not meeting reqs
-		if (!ms[0]) return outputErr(int, "time", ms[1]);
-
-		const time = ms[2];
-
-
-		// ++ ROLE ++
-		const roleId = opt.role ? opt.role.id : "";
+		if (ms < 1800000 || ms > 604800000) {
+			if (opt.role) return outputErr(int, "time");
+		}
+		if (ms < 600000) {
+			return outputErr(int, "time-2")
+		}
 
 		// ++ CHECK PERMISSIONS ++
 		const chPe = opt.channel.permissionsFor(int.guild.me);
@@ -92,7 +41,7 @@ module.exports = {
 			await client.revive.destroy({ where: { channelId: opt.channel.id } });
 			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again! \n\nRequired Permissions: \`SEND_MESSAGES\`, \`READ_MESSAGE_HISTORY\`, \`EMBED_LINKS\``);
 		}
-		if (roleId.length > 0 && !chPe.has("MENTION_EVERYONE")) {
+		if (opt.role && !chPe.has("MENTION_EVERYONE")) {
 			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \n\nMissing Permissions: \`MENTION_EVERYONE\``);
 		}
 
@@ -102,11 +51,10 @@ module.exports = {
 		await client.revive.create({
 			guildId: int.guild.id.toString(),
 			channelId: opt.channel.id.toString(),
-			role: roleId,
-			time: time,
+			role: opt.role,
+			time: ms,
 		});
 
-		ms[1] = ms[1].replace("CHANNEL_MENTION_HERE", `<#${opt.channel.id}>`);
-		return int.reply({ content: `${ms[1]}` });
+		return int.reply({ content: `<:success:887414468324253737> Success! I will send a message if <#${opt.channel.id}> has no activity for ${msToTime(ms)}` });
 	},
 };

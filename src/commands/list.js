@@ -15,6 +15,7 @@ module.exports = {
 		revives.forEach((elem) => {
 			if (elem.guildId === int.guild.id) {
 				let role = "";
+				elem.role = elem.role ?? "";
 				if (elem.role.length > 0) role = ` | <@&${elem.role}>`;
 				const str = `<#${elem.channelId}> | ${msToTime(elem.time)}${role}`;
 				printSettings.push(str);

@@ -38,6 +38,7 @@ module.exports = async (client) => {
 					components: [btnLinks],
 				}
 				// if role is defined
+				entry.role = entry.role ?? "";
 				if (entry.role.length > 0) {
 					msgObj.content = `<@&${entry.role}>`;
 				}
