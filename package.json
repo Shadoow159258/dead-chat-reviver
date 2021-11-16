@@ -18,6 +18,6 @@
 		"@root": "./",
 		"@src": "src/",
 		"@api": "src/api/",
-		"@tools": "src/tools/"
+		"@utils": "src/utils/"
 	}
 }

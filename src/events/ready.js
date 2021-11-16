@@ -46,6 +46,7 @@ module.exports = {
 
 		// Databases
 		await client.revive.sync();
+		await client.reviveMsgs.sync();
 		await client.stats.sync();
 		for await (const name of client.commands.keys()) {
 			if (name === "admin") continue;
@@ -57,7 +58,7 @@ module.exports = {
 		console.log("Databases Synced");
 
 		// Deploy Slash Commands
-		const reg = require("@tools/register");
+		const reg = require("@utils/register");
 		// await reg(client, { "type": "global" });
 		// await reg(client, { "type": "guild", "guildId": "866435905782808606" });
 

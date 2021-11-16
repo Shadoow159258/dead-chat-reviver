@@ -1,4 +1,4 @@
-const outputErr = require("@tools/error");
+const outputErr = require("@utils/error");
 
 module.exports = {
 	name: 'delete',

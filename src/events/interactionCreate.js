@@ -1,7 +1,7 @@
-const outputErr = require("@tools/error");
+const outputErr = require("@utils/error");
 const config = require("@root/config.json");
 
-const { msToTime } = require("@tools/functions");
+const { msToTime } = require("@utils/functions");
 
 module.exports = {
 	name: 'interactionCreate',

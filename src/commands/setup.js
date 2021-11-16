@@ -1,5 +1,5 @@
-const outputErr = require("@tools/error");
-const { msToTime, timeToMs } = require("@tools/functions");
+const outputErr = require("@utils/error");
+const { msToTime, timeToMs } = require("@utils/functions");
 
 module.exports = {
 	name: 'setup',
@@ -26,6 +26,7 @@ module.exports = {
 		// ++ TIME ++
 		// time to ms
 		const ms = timeToMs(opt.time);
+		if (typeof ms === "object") return ms[1];
 
 		// time not meeting reqs
 		if (ms < 1800000 || ms > 604800000) {

@@ -1,4 +1,4 @@
-const outputErr = require("@tools/error");
+const outputErr = require("@utils/error");
 const config = require("@root/config.json");
 const { MessageActionRow, MessageButton } = require("discord.js");
 const { inspect } = require("util");

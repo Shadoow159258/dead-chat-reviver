@@ -1,4 +1,4 @@
-const { msToTime } = require("@tools/functions");
+const { msToTime } = require("@utils/functions");
 
 module.exports = {
 	name: 'list',
