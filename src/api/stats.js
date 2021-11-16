@@ -14,19 +14,15 @@ route.get('/servers', (req, res) => {
 });
 route.get('/revives', async (req, res) => {
 	const allRevives = await client.revive.findAll();
-	let array = [];
-	for (const v of Object.values(allRevives)) {
-		array.push(v.time);
-	}
+	let array = allRevives.map(v => v.time);
 	let sum = 0;
-	for (let i = 0; i < array.length; i++) {
-		sum += parseInt(array[i], 10);
-	}
+	for (let i = 0; i < array.length; i++) sum += array[i];
 
 	const avg = sum / array.length;
-	const count = await client.revive.count();
+	const channels = await client.revive.count();
+	const msgs = (await client.reviveMsgs.findAll({ attributes: ['count'] }))[0].count;
 
-	res.send({ count: count, average: avg });
+	res.send({ channels: channels, msgs: msgs, average: avg });
 });
 
 module.exports = route;

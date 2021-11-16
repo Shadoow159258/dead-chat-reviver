@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("@root/config.json");
-const revive = require("@tools/revive");
+const revive = require("@utils/revive");
 
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -36,6 +36,9 @@ client.stats = sequelize.define('stats', {
 		allowNull: false,
 	},
 });
+client.reviveMsgs = sequelize.define('reviveMsgs', {
+	count: Sequelize.INTEGER,
+})
 
 
 // ++ EVENTS ++
