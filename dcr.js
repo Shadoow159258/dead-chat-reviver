@@ -64,8 +64,8 @@ for (const file of commandFiles) {
 
 
 // ++ REVIVE CHAT MESSAGES ++
-setInterval(() => {
-	revive(client);
+setInterval(async () => {
+	await revive(client);
 }, 120000); // 2 minutes
 
 
