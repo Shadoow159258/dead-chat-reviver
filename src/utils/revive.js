@@ -20,10 +20,10 @@ module.exports = async (client) => {
 			const lastMsg = channel?.lastMessageId ?? "";
 			const lastMsgTime = SnowflakeUtil.deconstruct(lastMsg).timestamp;
 
-			if (typeof lastMsgTime !== "number") return;
+			if (typeof lastMsgTime !== "number") continue;
 
 			const diff = Math.floor(Date.now() - lastMsgTime);
-			if (diff < revive.time) return;
+			if (diff < revive.time) continue;
 
 			const msgObj = {
 				content: null,
