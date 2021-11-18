@@ -6,6 +6,7 @@ const fs = require("fs");
 const config = require("@root/config.json");
 const revive = require("@utils/revive");
 
+
 // ++ CLIENT ++
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 client.events = new Discord.Collection();
@@ -67,8 +68,10 @@ setInterval(() => {
 	revive(client);
 }, 120000); // 2 minutes
 
+
 // ++ LOGIN ++
 client.login(config.client.token);
+
 
 module.exports = {
 	client: client
