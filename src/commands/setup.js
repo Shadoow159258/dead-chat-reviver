@@ -26,7 +26,7 @@ module.exports = {
 		// ++ TIME ++
 		// time to ms
 		const ms = timeToMs(opt.time);
-		if (typeof ms === "object") return ms[1];
+		if (typeof ms === "object") return int.reply({ content: `<:error:887414219845292052> ${ms[1]}` });
 
 		// time not meeting reqs
 		if (ms < 1800000 || ms > 604800000) {
