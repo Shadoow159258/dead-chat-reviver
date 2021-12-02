@@ -8,6 +8,8 @@ module.exports = {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
 
+		await int.deferReply();
+
 		const { topics } = config;
 
 		const Embed = {
@@ -36,7 +38,7 @@ module.exports = {
 				});
 		}
 
-		const msg = await int.reply({ embeds: [Embed], components: [btn], fetchReply: true });
+		const msg = await int.editReply({ embeds: [Embed], components: [btn], fetchReply: true });
 		return newTopic(msg);
 	},
 };
