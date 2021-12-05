@@ -59,28 +59,28 @@ module.exports = {
 							let nMsg;
 							if (typeCh) {
 								OutputEmbed.description = `**<:error:887414219845292052> Error** \n\`\`\`yaml\n${err.string}\`\`\``;
-								nMsg = await int.update({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true });
+								nMsg = await int.update({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true }).catch(() => {});
 								typeCh = false;
 							} else {
 								OutputEmbed.description = `**<:error:887414219845292052> Error** \n\`\`\`yaml\n${err.stack}\`\`\``;
-								nMsg = await int.update({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true });
+								nMsg = await int.update({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true }).catch(() => {});
 								typeCh = true;
 							}
 							changeErrorType(nMsg);
 						}).catch(() => {
-							if (!msg.deleted) return msg.edit({ embeds: [InputEmbed, OutputEmbed], components: [dbtn] });
+							if (!msg.deleted) return msg.edit({ embeds: [InputEmbed, OutputEmbed], components: [dbtn] }).catch(() => {});
 						});
 				}
 
 				if (!err) {
-					int.editReply({ embeds: [InputEmbed, OutputEmbed] });
+					int.editReply({ embeds: [InputEmbed, OutputEmbed] }).catch(() => {});
 				} else {
-					const msg = await int.editReply({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true });
+					const msg = await int.editReply({ embeds: [InputEmbed, OutputEmbed], components: [btn], fetchReply: true }).catch(() => {});
 					return changeErrorType(msg);
 				}
 				break;
 			case "test":
-				int.editReply("test");
+				int.editReply("test").catch(() => {});
 				break;
 			default:
 				break;
