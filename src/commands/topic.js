@@ -29,16 +29,16 @@ module.exports = {
 				.then(async (int) => {
 					// interaction (button) received
 					Embed.description = `__**${topics[Math.floor(Math.random() * topics.length)]}**__`;
-					const msg = await int.update({ embeds: [Embed], components: [btn], fetchReply: true }).catch(() => {});
+					const msg = await int.update({ embeds: [Embed], components: [btn], fetchReply: true }).catch(() => { });
 					newTopic(msg);
 				}).catch(() => {
 					// nothing received after 1 minute
-					if (!msg.deleted && msg.editable) return msg.edit({ embeds: [Embed], components: [dbtn] }).catch(() => {});
+					if (!msg.deleted && msg.editable) return msg.edit({ embeds: [Embed], components: [dbtn] }).catch(() => { });
 					return;
 				});
 		}
 
-		const msg = await int.editReply({ embeds: [Embed], components: [btn], fetchReply: true }).catch(() => {});
+		const msg = await int.editReply({ embeds: [Embed], components: [btn], fetchReply: true }).catch(() => { return });
 		return newTopic(msg);
 	},
 };

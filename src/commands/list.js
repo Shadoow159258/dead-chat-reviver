@@ -33,6 +33,6 @@ module.exports = {
 				"text": `Requested by ${int.user.tag}`
 			},
 		};
-		return int.editReply({ embeds: [HelpEmbed] }).catch(() => {});
+		return int.editReply({ embeds: [HelpEmbed] }).catch(() => { });
 	},
 };
