@@ -8,6 +8,8 @@ module.exports = {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
 
+		await int.deferReply();
+
 		const setup = [
 			"`channel` - The channel on which these rules should apply",
 			"`time` - Amount of time the channel should be inactive for the bot to activate",
@@ -62,6 +64,6 @@ module.exports = {
 			.addComponents(new MessageButton().setLabel('Website').setStyle('LINK').setURL(`${config.client.web}`))
 
 
-		int.reply({ embeds: [HelpEmbed], components: [btn1, btn2] });
+		int.editReply({ embeds: [HelpEmbed], components: [btn1, btn2] });
 	},
 };

@@ -9,6 +9,8 @@ module.exports = {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
 
+		await int.deferReply();
+
 		// ++ GENERAL ++ 
 		const opt = {
 			channel: int.options.getChannel('channel'),
@@ -26,7 +28,7 @@ module.exports = {
 		// ++ TIME ++
 		// time to ms
 		const ms = timeToMs(opt.time);
-		if (typeof ms === "object") return int.reply({ content: `<:error:887414219845292052> ${ms[1]}` });
+		if (typeof ms === "object") return int.editReply({ content: `<:error:887414219845292052> ${ms[1]}` });
 
 		// time not meeting reqs
 		if (ms < 1800000 || ms > 604800000) {
@@ -40,10 +42,10 @@ module.exports = {
 		const chPe = opt.channel.permissionsFor(int.guild.me);
 		if (!chPe.has("SEND_MESSAGES") || !chPe.has("READ_MESSAGE_HISTORY") || !chPe.has("EMBED_LINKS")) {
 			await client.revive.destroy({ where: { channelId: opt.channel.id } });
-			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again! \n\nRequired Permissions: \`SEND_MESSAGES\`, \`READ_MESSAGE_HISTORY\`, \`EMBED_LINKS\``);
+			return int.editReply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \nI deleted the settings for the channel, please set up the permissions and then try again! \n\nRequired Permissions: \`SEND_MESSAGES\`, \`READ_MESSAGE_HISTORY\`, \`EMBED_LINKS\``);
 		}
 		if (opt.role && !chPe.has("MENTION_EVERYONE")) {
-			return int.reply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \n\nMissing Permissions: \`MENTION_EVERYONE\``);
+			return int.editReply(`<:error:887414219845292052> I don't have the necessary permissions in that channel! \n\nMissing Permissions: \`MENTION_EVERYONE\``);
 		}
 
 
@@ -56,6 +58,6 @@ module.exports = {
 			time: ms,
 		});
 
-		return int.reply({ content: `<:success:887414468324253737> Success! I will send a message if <#${opt.channel.id}> has no activity for ${msToTime(ms)}` });
+		return int.editReply({ content: `<:success:887414468324253737> Success! I will send a message if <#${opt.channel.id}> has no activity for ${msToTime(ms)}` });
 	},
 };

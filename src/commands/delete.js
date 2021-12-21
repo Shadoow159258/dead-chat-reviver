@@ -8,6 +8,8 @@ module.exports = {
 		const cmd = await client.stats.findOne({ where: { name: this.name } });
 		cmd.increment('uses'); // +1
 
+		await int.deferReply();
+
 		// check channel type
 		const channel = int.options.getChannel('channel');
 		if (channel.type !== "GUILD_TEXT") return outputErr(int, "text-channel-req");
@@ -17,6 +19,6 @@ module.exports = {
 		const entry = await client.revive.destroy({ where: { channelId: channel.id } });
 
 		if (!entry) return outputErr(int, "no-revive-channel");
-		else return int.reply(`<:success:887414468324253737> Success! <#${channel.id}> won't receive any revive messages anymore!`)
+		else return int.editReply(`<:success:887414468324253737> Success! <#${channel.id}> won't receive any revive messages anymore!`)
 	},
 };
