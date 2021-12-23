@@ -1,4 +1,7 @@
 # Dead Chat Reviver (DCR)
+
+You are not allowed to use this code for own usage!
+
 A Discord bot that prevents servers & channels from dying by sending a revive message as well as a ping and a random conversation starter.  
 [Invite Link](https://discord.com/oauth2/authorize?client_id=887293151998529576&scope=bot%20applications.commands&permissions=478208 "discord.com") | [Support Server](https://discord.gg/6UXNC9b6Ue "discord.com") | [Bot Website](https://dcr.poldisweb.de)  
 
